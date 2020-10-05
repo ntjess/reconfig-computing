@@ -1,0 +1,11 @@
+**/modelsim
+**/vivado_proj
+**/work
+
+.project
+.settings
+
+*.wlf
+*.bak
+*modelsim*
+*.xml

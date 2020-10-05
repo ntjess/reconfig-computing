@@ -27,6 +27,33 @@ architecture default of user_app is
 begin
 
 	-- connect memory map and fib entity
-
+  mem_map : entity work.memory_map
+    port map(
+      clk     => clk,
+      rst     => rst,
+      wr_en   => mmap_wr_en,
+      wr_addr => mmap_wr_addr,
+      wr_data => mmap_wr_data,
+      rd_en   => mmap_rd_en,
+      rd_addr => mmap_rd_addr,
+      rd_data => mmap_rd_data,
+      go      => go,
+      n       => n,
+      result  => result,
+      done    => done
+    );
+    
+  fib : entity work.fib_fsmd
+    generic map(
+      width => 32
+    )
+    port map(
+      clk => clk,
+      rst => rst,
+      go => go,
+      n => n,
+      done => done,
+      result => result
+    );
 
 end default;
