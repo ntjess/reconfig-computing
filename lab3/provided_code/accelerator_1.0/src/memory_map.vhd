@@ -37,8 +37,6 @@ architecture BHV of memory_map is
 begin
   process(clk, rst)
   begin
-    next_result <= result;
-    next_done_vector(0) <= done;
     -- Handle write access
     if (rst = '1') then
       go <= '0';
@@ -46,7 +44,8 @@ begin
       next_result <= std_logic_vector(to_unsigned(0, next_done_vector'length));
       n <= std_logic_vector(to_unsigned(0, 32));
     elsif (rising_edge(clk)) then
---      next_done_vector(0) <= done;
+      next_result <= result;
+      next_done_vector(0) <= done;
       
       if (wr_en = '1') then
         case addr_type(to_integer(unsigned(wr_addr))) is

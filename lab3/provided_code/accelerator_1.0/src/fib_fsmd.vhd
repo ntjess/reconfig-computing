@@ -43,6 +43,10 @@ begin
   process(state, go, n_reg, i)
   begin
     next_state <= state;
+    next_y <= y;
+    next_x <= x;
+    next_i <= i;
+    n_reg <= n_reg;
     done <= '0';
     result <= std_logic_vector(y);
     
