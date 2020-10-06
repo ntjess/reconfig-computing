@@ -21,7 +21,7 @@ entity fib_fsmd is
 end entity fib_fsmd;
 
 architecture RTL of fib_fsmd is
-  type t_state is (init, incr_xyi, found_fib);
+  type t_state is (init, prep_incr, incr_xyi, found_fib, wait_go_clear);
   signal state: t_state := init;
   signal next_state: t_state;
   
@@ -31,7 +31,7 @@ begin
   process(clk, rst)
   begin
     if (rst = '1') then
-      state <= init;                
+      state <= init;
     elsif(rising_edge(clk)) then
       state <= next_state;
       y <= next_y;
@@ -44,18 +44,19 @@ begin
   begin
     next_state <= state;
     done <= '0';
+    result <= std_logic_vector(y);
     
     case state is
     when init =>
-      if (go = '1' and n_reg <= to_unsigned(2, n_reg'length)) then
-        next_state <= found_fib;
-      elsif (go = '1') then
-        next_state <= incr_xyi;
+      if (go = '1') then
+        next_state <= prep_incr;
       end if;
+    when prep_incr =>
       n_reg <= unsigned(n);
-      next_i <= to_unsigned(3, i'length);
-      next_x <= to_unsigned(1, i'length);
+      next_i <= to_unsigned(2, i'length);
+      next_x <= to_unsigned(0, i'length);
       next_y <= to_unsigned(1, i'length);
+      next_state <= incr_xyi;
     when incr_xyi =>
       if (i >= n_reg) then
         next_state <= found_fib;
@@ -64,11 +65,13 @@ begin
       next_x <= y;
       next_y <= y + x;
     when found_fib =>
+      done <= '1';
+      next_state <= wait_go_clear;
+    when wait_go_clear =>
+      done <= '1';
       if (go = '0') then
         next_state <= init;
       end if;
-      result <= std_logic_vector(y);
-      done <= '1';
     end case;
   end process;
 
