@@ -9,3 +9,7 @@
 *.bak
 *modelsim*
 *.xml
+*.zip
+*.aux
+*.log
+*.gz

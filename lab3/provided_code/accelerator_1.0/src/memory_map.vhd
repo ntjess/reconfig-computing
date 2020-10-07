@@ -34,23 +34,30 @@ end memory_map;
 architecture BHV of memory_map is
   signal next_done_vector : std_logic_vector(31 downto 0);
   signal next_result : std_logic_vector(31 downto 0);
+  signal next_go : std_logic;
+  signal readable_go : std_logic;
 begin
+  go <= readable_go;
+  
   process(clk, rst)
   begin
     -- Handle write access
     if (rst = '1') then
-      go <= '0';
+      readable_go <= '0';
+      next_go <= '0';
       next_done_vector <= std_logic_vector(to_unsigned(0, next_done_vector'length));
       next_result <= std_logic_vector(to_unsigned(0, next_done_vector'length));
       n <= std_logic_vector(to_unsigned(0, 32));
     elsif (rising_edge(clk)) then
       next_result <= result;
       next_done_vector(0) <= done;
+      next_go <= readable_go;
+      readable_go <= '0';
       
       if (wr_en = '1') then
         case addr_type(to_integer(unsigned(wr_addr))) is
         when C_N_ADDR => n <= wr_data;
-        when C_GO_ADDR => go <= wr_data(0);
+        when C_GO_ADDR => readable_go <= wr_data(0);
         when others => null;
         end case;
       end if;
@@ -62,6 +69,8 @@ begin
           rd_data <= next_result;
         when C_DONE_ADDR =>
           rd_data <= next_done_vector;
+        when C_GO_ADDR =>
+          rd_data(0) <= next_go;
         when others => null;
         end case;
       end if;      

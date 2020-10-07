@@ -126,7 +126,7 @@ begin
             -- send go = 0 over memory map
             mmap_wr_addr <= std_logic_vector(to_unsigned(C_GO_ADDR, C_MMAP_ADDR_WIDTH));
             mmap_wr_en   <= '1';
-            mmap_wr_data <= std_logic_vector(to_unsigned(0, TEST_WIDTH));
+            --mmap_wr_data <= std_logic_vector(to_unsigned(1, TEST_WIDTH));
             wait until clk'event and clk = '1';
             clearMMAP;
 

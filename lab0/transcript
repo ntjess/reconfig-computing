@@ -1,0 +1,129 @@
+# do ./tmp.do
+# reading modelsim.ini
+# Loading project lab0
+# //  ModelSim PE Student Edition 10.4a Apr  7 2015 
+# //
+# //  Copyright 1991-2015 Mentor Graphics Corporation
+# //  All Rights Reserved.
+# //
+# //  THIS WORK CONTAINS TRADE SECRET AND PROPRIETARY INFORMATION
+# //  WHICH IS THE PROPERTY OF MENTOR GRAPHICS CORPORATION OR ITS
+# //  LICENSORS AND IS SUBJECT TO LICENSE TERMS.
+# //  THIS DOCUMENT CONTAINS TRADE SECRETS AND COMMERCIAL OR FINANCIAL
+# //  INFORMATION THAT ARE PRIVILEGED, CONFIDENTIAL, AND EXEMPT FROM
+# //  DISCLOSURE UNDER THE FREEDOM OF INFORMATION ACT, 5 U.S.C. SECTION 552.
+# //  FURTHERMORE, THIS INFORMATION IS PROHIBITED FROM DISCLOSURE UNDER
+# //  THE TRADE SECRETS ACT, 18 U.S.C. SECTION 1905.
+# //
+# // NOT FOR CORPORATE OR PRODUCTION USE.
+# // THE ModelSim PE Student Edition IS NOT A SUPPORTED PRODUCT.
+# // FOR HIGHER EDUCATION PURPOSES ONLY
+# //
+# vsim -do "./tmp.do" 
+# Start time: 03:40:47 on Sep 06,2020
+# Loading std.standard
+# Loading std.textio(body)
+# Loading ieee.std_logic_1164(body)
+# Loading ieee.math_real(body)
+# Loading ieee.numeric_std(body)
+# Loading work.add_pipe_tb(tb)
+# Loading work.add_pipe(bhv)
+# ** Warning: (vsim-WLF-5000) WLF file currently in use: vsim.wlf
+# 
+#           File in use by: ntjes  Hostname: DESKTOP-25POJU2  ProcessID: 3920
+# 
+#           Attempting to use alternate WLF file "./wlftkwaert".
+# ** Warning: (vsim-WLF-5001) Could not open WLF file: vsim.wlf
+# 
+#           Using alternate file: ./wlftkwaert
+# 
+# unsigned
+# ** Note: SIMULATION FINISHED!!!
+#    Time: 5165 ns  Iteration: 0  Instance: /add_pipe_tb
+# vsim 
+# Start time: 03:40:50 on Sep 06,2020
+# Loading std.standard
+# Loading std.textio(body)
+# Loading ieee.std_logic_1164(body)
+# Loading ieee.math_real(body)
+# Loading ieee.numeric_std(body)
+# Loading work.datapath_tb(tb)
+# Loading work.datapath(str)
+# Loading work.mult_pipe(bhv)
+# Loading work.add_pipe(bhv)
+# Loading work.reg(bhv)
+# ** Warning: (vsim-WLF-5000) WLF file currently in use: vsim.wlf
+# 
+#           File in use by: ntjes  Hostname: DESKTOP-25POJU2  ProcessID: 3920
+# 
+#           Attempting to use alternate WLF file "./wlftjs1y5b".
+# ** Warning: (vsim-WLF-5001) Could not open WLF file: vsim.wlf
+# 
+#           Using alternate file: ./wlftjs1y5b
+# 
+# unsigned
+# ** Note: SIMULATION FINISHED!!!
+#    Time: 5155 ns  Iteration: 0  Instance: /datapath_tb
+# vsim 
+# Start time: 03:40:52 on Sep 06,2020
+# Loading std.standard
+# Loading std.textio(body)
+# Loading ieee.std_logic_1164(body)
+# Loading work.dec2to4_tb(tb)
+# Loading work.dec2to4(with_select)
+# Loading work.dec2to4(when_else)
+# Loading work.dec2to4(if_statement)
+# Loading work.dec2to4(case_statement)
+# ** Warning: (vsim-WLF-5000) WLF file currently in use: vsim.wlf
+# 
+#           File in use by: ntjes  Hostname: DESKTOP-25POJU2  ProcessID: 3920
+# 
+#           Attempting to use alternate WLF file "./wlftt8z2jz".
+# ** Warning: (vsim-WLF-5001) Could not open WLF file: vsim.wlf
+# 
+#           Using alternate file: ./wlftt8z2jz
+# 
+# unsigned
+# ** Note: SIMULATION FINISHED
+#    Time: 40 ns  Iteration: 0  Instance: /dec2to4_tb
+# vsim 
+# Start time: 03:40:56 on Sep 06,2020
+# Loading std.standard
+# Loading std.textio(body)
+# Loading ieee.std_logic_1164(body)
+# Loading work.enc4to2_tb(tb)
+# Loading work.enc4to2(if_statement)
+# Loading work.enc4to2(case_statement)
+# ** Warning: (vsim-WLF-5000) WLF file currently in use: vsim.wlf
+# 
+#           File in use by: ntjes  Hostname: DESKTOP-25POJU2  ProcessID: 3920
+# 
+#           Attempting to use alternate WLF file "./wlftafgm6d".
+# ** Warning: (vsim-WLF-5001) Could not open WLF file: vsim.wlf
+# 
+#           Using alternate file: ./wlftafgm6d
+# 
+# unsigned
+# ** Note: SIMULATION FINISHED
+#    Time: 160 ns  Iteration: 0  Instance: /enc4to2_tb
+# vsim 
+# Start time: 03:40:58 on Sep 06,2020
+# Loading std.standard
+# Loading std.textio(body)
+# Loading ieee.std_logic_1164(body)
+# Loading ieee.math_real(body)
+# Loading ieee.numeric_std(body)
+# Loading work.mult_pipe_tb(tb)
+# Loading work.mult_pipe(bhv)
+# ** Warning: (vsim-WLF-5000) WLF file currently in use: vsim.wlf
+# 
+#           File in use by: ntjes  Hostname: DESKTOP-25POJU2  ProcessID: 3920
+# 
+#           Attempting to use alternate WLF file "./wlfthsss0v".
+# ** Warning: (vsim-WLF-5001) Could not open WLF file: vsim.wlf
+# 
+#           Using alternate file: ./wlfthsss0v
+# 
+# unsigned
+# ** Note: SIMULATION FINISHED!!!
+#    Time: 5165 ns  Iteration: 0  Instance: /mult_pipe_tb
