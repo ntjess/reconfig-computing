@@ -54,6 +54,9 @@ begin
     when init =>
       if (go = '1') then
         next_state <= prep_incr;
+        done <= '0';
+      else
+        done <= '1';
       end if;
     when prep_incr =>
       n_reg <= unsigned(n);
