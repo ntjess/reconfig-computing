@@ -16,14 +16,14 @@
 using namespace std;
 
 #define TEST_SIZE 10000
-#define PRINT_TIMEOUT 0
+#define PRINT_TIMEOUT 1
 //#define DEBUG
 #define C_GO_ADDR     0
 #define C_N_ADDR      1
 #define C_RESULT_ADDR 2
 #define C_DONE_ADDR   3
 
-#define MAX_TIMEOUT   0
+#define MAX_TIMEOUT   20000
 
 unsigned int calcFib(int n) {
   if (n == 0) return 0;
@@ -70,7 +70,6 @@ int main(int argc, char* argv[]) {
 
   unsigned int go = 0, result = 0;
   board->write(&go, C_GO_ADDR, 1);
-  uint waitCnt = 0;
   for (unsigned ii = 1; ii <= 30; ii++) {
     board->write(&ii, C_N_ADDR, 1);
     go = 1;
@@ -78,13 +77,7 @@ int main(int argc, char* argv[]) {
     waitWhile(0, C_DONE_ADDR, board);
 
     board->read(&result, C_RESULT_ADDR, 1);
-    waitCnt = waitWhile(1, C_GO_ADDR, board);
-    if (waitCnt == MAX_TIMEOUT) {
-      // Device failed to update 'go' on its own
-      go = 0;
-      board->write(&go, C_GO_ADDR, 1);
-    }
-    waitWhile(1, C_DONE_ADDR, board);
+    waitWhile(1, C_GO_ADDR, board);
 
     cout << ii << ": HW = " << result << ", SW = " << calcFib(ii) << endl;
   }
