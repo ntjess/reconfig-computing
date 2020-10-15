@@ -1,6 +1,7 @@
 **/modelsim
 **/vivado_proj
 **/work
+**/zed_app
 
 .project
 .settings
@@ -13,3 +14,5 @@
 *.aux
 *.log
 *.gz
+
+*.o
