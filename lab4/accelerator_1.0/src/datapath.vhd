@@ -5,13 +5,16 @@ use ieee.numeric_std.all;
 entity datapath is
   port(
     clk : in std_logic;
+    en : in std_logic;
+    rst : in std_logic;
     
     in1: in std_logic_vector(7 downto 0);
     in2: in std_logic_vector(7 downto 0);
     in3: in std_logic_vector(7 downto 0);
     in4: in std_logic_vector(7 downto 0);
     
-    output: out std_logic_vector(16 downto 0)
+    output: out std_logic_vector(16 downto 0);
+    out_valid : out std_logic
   );
 end entity datapath;
 
@@ -28,6 +31,8 @@ architecture RTL of datapath is
   signal reg3out : std_logic_vector(7 downto 0);
   signal reg4out : std_logic_vector(7 downto 0);
   
+  signal pipeline_valid : std_logic_vector(2 downto 0);
+  
 begin
 
   reg1 : entity work.reg
@@ -35,8 +40,10 @@ begin
       width => 8
     )
     port map(
-      clk    => clk,
-      input  => in1,
+      clk => clk,
+      rst => rst,
+      en => en,
+      input => in1,
       output => reg1out
     );
   
@@ -45,8 +52,10 @@ begin
       width => 8
     )
     port map(
-      clk    => clk,
-      input  => in2,
+      clk => clk,
+      rst => rst,
+      en => en,
+      input => in2,
       output => reg2out
     );
     
@@ -55,8 +64,10 @@ begin
       width => 8
     )
     port map(
-      clk    => clk,
-      input  => in3,
+      clk => clk,
+      rst => rst,
+      en => en,
+      input => in3,
       output => reg3out
     );
     
@@ -65,8 +76,10 @@ begin
       width => 8
     )
     port map(
-      clk    => clk,
-      input  => in4,
+      clk => clk,
+      rst => rst,
+      en => en,
+      input => in4,
       output => reg4out
     );
     
@@ -78,8 +91,10 @@ begin
       width => 16
     )
     port map(
-      clk    => clk,
-      input  => mul1in,
+      clk => clk,
+      rst => rst,
+      en => en,
+      input => mul1in,
       output => mul1out
     );
     
@@ -88,8 +103,10 @@ begin
       width => 16
     )
     port map(
-      clk    => clk,
-      input  => mul2in,
+      clk => clk,
+      rst => rst,
+      en => en,
+      input => mul2in,
       output => mul2out
     );
   
@@ -100,9 +117,26 @@ begin
       width => 17
     )
     port map(
-      clk    => clk,
-      input  => addin,
+      clk => clk,
+      rst => rst,
+      en => en,
+      input => addin,
       output => output
     );
+    
+    -- Pipeline valid bit
+    u_valid_regs : for ii in 0 to 1 generate
+      u_reg : entity work.reg
+        generic map(
+          width => 1
+        )
+        port map(
+          clk       => clk,
+          rst       => rst,
+          en        => en,
+          input(0)  => pipeline_valid(ii),
+          output(0) => pipeline_valid(ii+1)
+        );
+    end generate;
 
 end architecture RTL;
