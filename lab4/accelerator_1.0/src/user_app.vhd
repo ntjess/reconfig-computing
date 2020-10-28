@@ -114,5 +114,16 @@ begin
 	
 	-- TODO: instatiate controllerm datapath/pipeline, address generators, 
 	-- and any other necessary logic
+	U_DP : entity work.controller
+	  port map(
+	    clk                  => clk,
+	    rst                  => rst,
+	    go                   => go,
+	    done                 => done,
+	    go_buffer            => open,
+	    flush_pipeline_valid => open,
+	    done_buffer          => done_buffer,
+	    in_addr_en           => in_addr_en
+	  );
 			
 end default;

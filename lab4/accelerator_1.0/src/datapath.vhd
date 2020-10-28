@@ -125,6 +125,7 @@ begin
     );
     
     -- Pipeline valid bit
+    pipeline_valid(0) <= en;
     u_valid_regs : for ii in 0 to 1 generate
       u_reg : entity work.reg
         generic map(
@@ -138,5 +139,6 @@ begin
           output(0) => pipeline_valid(ii+1)
         );
     end generate;
+    out_valid <= pipeline_valid(2);
 
 end architecture RTL;

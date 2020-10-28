@@ -22,5 +22,5 @@ package user_pkg is
 
     constant C_1 : std_logic := '1';
     constant C_0 : std_logic := '0';
-
+    
 end user_pkg;
