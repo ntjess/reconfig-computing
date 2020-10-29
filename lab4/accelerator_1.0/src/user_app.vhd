@@ -42,9 +42,10 @@ architecture default of user_app is
     signal mem_out_wr_en         : std_logic;
     signal mem_out_wr_data_valid : std_logic;
     signal mem_out_done          : std_logic;
-
+    
 begin
-
+  
+  done <= mem_out_done;
 	------------------------------------------------------------------------------
     U_MMAP : entity work.memory_map
         port map (
@@ -88,8 +89,8 @@ begin
             wen   => mem_in_wr_en,
             waddr => mem_in_wr_addr,
             wdata => mem_in_wr_data,
-            raddr => mem_in_rd_addr,  -- TODO: connect to input address generator
-            rdata => mem_in_rd_data); -- TODO: connect to pipeline input
+            raddr => mem_in_rd_addr,  -- TODO: connect to input address generator (COMPLETE)
+            rdata => mem_in_rd_data); -- TODO: connect to pipeline input (COMPLETE)
 	------------------------------------------------------------------------------
 
 	
@@ -105,25 +106,57 @@ begin
         port map (
             clk   => clk,
             wen   => mem_out_wr_en,
-            waddr => mem_out_wr_addr,  -- TODO: connect to output address generator
+            waddr => mem_out_wr_addr,  -- TODO: connect to output address generator (COMPLETE)
             wdata => mem_out_wr_data,  -- TODO: connect to pipeline output
             raddr => mem_out_rd_addr,
             rdata => mem_out_rd_data);
 	------------------------------------------------------------------------------
 	
 	
-	-- TODO: instatiate controllerm datapath/pipeline, address generators, 
+	-- TODO: instatiate controllerm datapath/pipeline, address generators, (COMPLETE)
 	-- and any other necessary logic
-	U_DP : entity work.controller
+	
+	U_DP : entity work.datapath
 	  port map(
-	    clk                  => clk,
-	    rst                  => rst,
-	    go                   => go,
-	    done                 => done,
-	    go_buffer            => open,
-	    flush_pipeline_valid => open,
-	    done_buffer          => done_buffer,
-	    in_addr_en           => in_addr_en
+	    clk       => clk,
+	    en        => mem_in_rd_addr_valid,
+	    rst       => rst,
+	    in1       => mem_in_rd_data(31 downto 24),
+	    in2       => mem_in_rd_data(23 downto 16),
+	    in3       => mem_in_rd_data(15 downto 8),
+	    in4       => mem_in_rd_data(7 downto 0),
+	    output    => mem_out_wr_data,
+	    out_valid => mem_out_wr_en
 	  );
-			
+	  
+  U_CTRL : entity work.controller
+    port map(
+      clk                  => clk,
+      rst                  => rst,
+      go                   => go,
+      done                 => mem_out_done,
+      go_buffer            => open,
+      flush_pipeline_valid => open,
+      in_addr_en           => mem_in_rd_addr_valid
+    );
+    
+  U_IN_ADDR_GEN : entity work.addr_generator
+    port map(
+      clk      => clk,
+      rst      => rst,
+      en       => mem_in_rd_addr_valid,
+      size     => size,
+      out_addr => mem_in_rd_addr,
+      done     => done
+    );
+    
+  U_OUT_ADDR_GEN : entity work.addr_generator
+    port map(
+      clk      => clk,
+      rst      => rst,
+      en       => mem_out_wr_en,
+      size     => size,
+      out_addr => mem_out_wr_addr,
+      done     => mem_out_done
+    );
 end default;

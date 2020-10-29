@@ -12,7 +12,6 @@ entity controller is
     
     go_buffer : out std_logic;
     flush_pipeline_valid : out std_logic;
-    done_buffer : out std_logic;
     in_addr_en : out std_logic
   );
 end entity controller;
@@ -40,7 +39,6 @@ begin
     case state is
       when s_init =>
         next_state <= s_wait_go_1;
-        done_buffer <= '0';
       when s_wait_go_1 =>
         go_buffer <= go;
         if go = '1' then
@@ -48,12 +46,10 @@ begin
         end if;
       when s_exec =>
         in_addr_en <= '1';
-        done_buffer <= '0';
         if done = '1' then
           next_state <= s_done;
         end if;
       when s_done =>
-        done_buffer <= '1';
         flush_pipeline_valid <= '1';
         if go = '0' then
           next_state <= s_wait_go_1;
