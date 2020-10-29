@@ -43,10 +43,11 @@ architecture default of user_app is
     signal mem_out_wr_data_valid : std_logic;
     signal mem_out_done          : std_logic;
     
+    signal mem_in_valid_delay    : std_logic;
+    
 begin
   
-  done <= mem_out_done;
-	------------------------------------------------------------------------------
+------------------------------------------------------------------------------
     U_MMAP : entity work.memory_map
         port map (
             clk     => clk,
@@ -119,7 +120,7 @@ begin
 	U_DP : entity work.datapath
 	  port map(
 	    clk       => clk,
-	    en        => mem_in_rd_addr_valid,
+	    en        => mem_in_valid_delay,
 	    rst       => rst,
 	    in1       => mem_in_rd_data(31 downto 24),
 	    in2       => mem_in_rd_data(23 downto 16),
@@ -136,6 +137,7 @@ begin
       go                   => go,
       done                 => mem_out_done,
       go_buffer            => open,
+      done_buffer          => done,
       flush_pipeline_valid => open,
       in_addr_en           => mem_in_rd_addr_valid
     );
@@ -159,4 +161,28 @@ begin
       out_addr => mem_out_wr_addr,
       done     => mem_out_done
     );
+    
+  U_IN_DELAY : entity work.reg
+    generic map (
+        width => 1
+    )
+    port map(
+      clk => clk,
+      rst => rst,
+      en => '1',
+      input(0) => mem_in_rd_addr_valid,
+      output(0) => mem_in_valid_delay
+    );
+    
+  -- U_OUT_DELAY : entity work.reg
+    -- generic map (
+        -- width => 1
+    -- )
+    -- port map(
+      -- clk => clk,
+      -- rst => rst,
+      -- en => '1',
+      -- input(0) => mem_in_rd_addr_valid,
+      -- output(0) => mem_in_valid_delay
+    -- );
 end default;

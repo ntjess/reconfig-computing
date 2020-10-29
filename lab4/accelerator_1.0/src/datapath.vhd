@@ -31,7 +31,7 @@ architecture RTL of datapath is
   signal reg3out : std_logic_vector(7 downto 0);
   signal reg4out : std_logic_vector(7 downto 0);
   
-  signal pipeline_valid : std_logic_vector(2 downto 0);
+  signal pipeline_valid : std_logic_vector(3 downto 0);
   
 begin
 
@@ -126,7 +126,7 @@ begin
     
     -- Pipeline valid bit
     pipeline_valid(0) <= en;
-    u_valid_regs : for ii in 0 to 1 generate
+    u_valid_regs : for ii in 0 to 2 generate
       u_reg : entity work.reg
         generic map(
           width => 1
@@ -139,6 +139,6 @@ begin
           output(0) => pipeline_valid(ii+1)
         );
     end generate;
-    out_valid <= pipeline_valid(2);
+    out_valid <= pipeline_valid(3);
 
 end architecture RTL;

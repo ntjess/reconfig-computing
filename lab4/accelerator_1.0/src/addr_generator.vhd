@@ -28,11 +28,11 @@ begin
     next_addr <= to_unsigned(0, C_MEM_ADDR_WIDTH);
     done <= '0';
   elsif (rising_edge(clk)) then
+    done <= '0';
     out_addr  <= std_logic_vector(next_addr);
     if (en = '1') then
       if next_addr < unsigned(size) then
         next_addr <= next_addr + 1;
-        done <= '0';
       else
         done <= '1';
       end if;
