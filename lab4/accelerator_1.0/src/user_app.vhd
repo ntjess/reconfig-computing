@@ -149,7 +149,7 @@ begin
       en       => mem_in_rd_addr_valid,
       size     => size,
       out_addr => mem_in_rd_addr,
-      done     => done
+      done     => open
     );
     
   U_OUT_ADDR_GEN : entity work.addr_generator
