@@ -18,12 +18,15 @@ using namespace std;
 
 // DON'T CHANGE WITHOUT ALSO CHANGING VHDL TO MATCH
 #define ADDR_WIDTH 15
-#define MAX_SIZE (1<<ADDR_WIDTH)
+#define MAX_SIZE 100//(1<<ADDR_WIDTH)
 #define MEM_IN_ADDR 0
 #define MEM_OUT_ADDR 0
 #define GO_ADDR ((1<<MMAP_ADDR_WIDTH)-3)
 #define SIZE_ADDR ((1<<MMAP_ADDR_WIDTH)-2)
 #define DONE_ADDR ((1<<MMAP_ADDR_WIDTH)-1)
+
+#define MAX_TIMEOUT   2000000
+#define PRINT_TIMEOUT 1
 
 
 // software implementation of the code implemented on the FPGA
@@ -41,6 +44,19 @@ void sw(unsigned *input, unsigned *output, unsigned size) {
 
       output[i] = in1*in2 + in3*in4;
   }
+}
+
+uint waitWhile(unsigned int cmp, uint addr, Board *board) {
+  uint timeoutCnt = 0;
+  uint readVal = cmp;
+  while (readVal == cmp && timeoutCnt < MAX_TIMEOUT) {
+    board->read(&readVal, addr, 1);
+    timeoutCnt++;
+  }
+  if (timeoutCnt == MAX_TIMEOUT && PRINT_TIMEOUT) {
+    cout << "Timeout error! (timeout = " << timeoutCnt << ")" << endl << flush;
+  }
+  return timeoutCnt;
 }
 
 
@@ -67,6 +83,9 @@ int main(int argc, char* argv[]) {
     exit(-1);
   }
 
+  if (PRINT_TIMEOUT) {
+    cout << "Initialized board..." << endl;
+  }
   // change to test smaller amounts
   unsigned size = MAX_SIZE;
 
@@ -80,7 +99,6 @@ int main(int argc, char* argv[]) {
   assert(input != NULL);
   assert(swOutput != NULL);
   assert(hwOutput != NULL);
-
   // initialize input and output arrays
   for (unsigned i=0; i < size; i++) {
 
@@ -93,7 +111,9 @@ int main(int argc, char* argv[]) {
     swOutput[i] = 0;
     hwOutput[i] = 0;
   }
-
+  if (PRINT_TIMEOUT) {
+    cout << "Inputs Initialized..." << endl;
+  }
   // transfer input array and size to FPGA
   hwTime.start();
   writeTime.start();
@@ -103,15 +123,21 @@ int main(int argc, char* argv[]) {
 
   // assert go. Note that the memory map automatically sets go back to 1 to 
   // avoid an additional transfer.
+  if (PRINT_TIMEOUT) {
+    cout << "About to go..." << endl;
+  }
   go = 1;
   board->write(&go, GO_ADDR, 1);
     
   // wait for the board to assert done
   waitTime.start();
   done = 0;
-  while (!done) {
-    board->read(&done, DONE_ADDR, 1);
-  }
+  cout << "waiting for done..." << endl;
+  // return 0;
+  waitWhile(0, DONE_ADDR, board);
+  // while (!done) {
+  //   board->read(&done, DONE_ADDR, 1);
+  // }
   waitTime.stop();
 
   // read the outputs back from the FPGA
