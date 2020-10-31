@@ -44,6 +44,7 @@ architecture default of user_app is
     signal mem_out_done          : std_logic;
     
     signal mem_in_valid_delay    : std_logic;
+    signal mem_out_wr_addr_delay : std_logic_vector(mem_out_wr_addr'range);
     
 begin
   
@@ -116,6 +117,18 @@ begin
 	
 	-- TODO: instatiate controllerm datapath/pipeline, address generators, (COMPLETE)
 	-- and any other necessary logic
+  done <= mem_out_done;
+  U_IN_DELAY : entity work.reg
+  generic map (
+      width => 1
+  )
+  port map(
+    clk => clk,
+    rst => rst,
+    en => '1',
+    input(0) => mem_in_rd_addr_valid,
+    output(0) => mem_in_valid_delay
+  );
 	
 	U_DP : entity work.datapath
 	  port map(
@@ -137,7 +150,7 @@ begin
       go                   => go,
       done                 => mem_out_done,
       go_buffer            => open,
-      done_buffer          => done,
+      done_buffer          => open,--done
       flush_pipeline_valid => open,
       in_addr_en           => mem_in_rd_addr_valid
     );
@@ -162,27 +175,16 @@ begin
       done     => mem_out_done
     );
     
-  U_IN_DELAY : entity work.reg
+  U_OUT_ADDR_DELAY : entity work.reg
     generic map (
-        width => 1
+        width => mem_out_wr_addr'length
     )
     port map(
       clk => clk,
       rst => rst,
       en => '1',
-      input(0) => mem_in_rd_addr_valid,
-      output(0) => mem_in_valid_delay
+      input => mem_out_wr_addr,
+      output => mem_out_wr_addr_delay
     );
-    
-  -- U_OUT_DELAY : entity work.reg
-    -- generic map (
-        -- width => 1
-    -- )
-    -- port map(
-      -- clk => clk,
-      -- rst => rst,
-      -- en => '1',
-      -- input(0) => mem_in_rd_addr_valid,
-      -- output(0) => mem_in_valid_delay
-    -- );
+	
 end default;

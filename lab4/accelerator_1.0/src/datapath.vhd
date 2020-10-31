@@ -31,7 +31,7 @@ architecture RTL of datapath is
   signal reg3out : std_logic_vector(7 downto 0);
   signal reg4out : std_logic_vector(7 downto 0);
   
-  signal pipeline_valid : std_logic_vector(3 downto 0);
+  signal pipeline_valid : std_logic_vector(1 downto 0) := (others => '0');
   
 begin
 
@@ -125,20 +125,17 @@ begin
     );
     
     -- Pipeline valid bit
-    pipeline_valid(0) <= en;
-    u_valid_regs : for ii in 0 to 2 generate
-      u_reg : entity work.reg
-        generic map(
-          width => 1
-        )
-        port map(
-          clk       => clk,
-          rst       => rst,
-          en        => en,
-          input(0)  => pipeline_valid(ii),
-          output(0) => pipeline_valid(ii+1)
-        );
-    end generate;
-    out_valid <= pipeline_valid(3);
-
+    process(clk, rst)
+    begin
+      if rst = '1' then
+        pipeline_valid <= (others => '0');
+      elsif rising_edge(clk) then
+        pipeline_valid(0) <= en;
+        for ii in 0 to pipeline_valid'length-2 loop
+          pipeline_valid(ii+1) <= pipeline_valid(ii);
+        end loop;
+        out_valid <= pipeline_valid(pipeline_valid'length-1);
+      end if;
+    end process;
+    
 end architecture RTL;
