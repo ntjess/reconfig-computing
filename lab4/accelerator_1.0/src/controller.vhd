@@ -39,11 +39,15 @@ begin
     
     case state is
       when s_init =>
-        next_state <= s_wait_go_1;
+        next_state <=  s_wait_go_1;
         done_buffer <= '0';
+        if go = '1' then
+          next_state <= s_exec;
+        end if;
       when s_wait_go_1 =>
         go_buffer <= go;
         if go = '1' then
+          in_addr_en <= '1';
           next_state <= s_exec;
         end if;
       when s_exec =>
