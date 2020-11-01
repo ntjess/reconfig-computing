@@ -18,7 +18,7 @@ using namespace std;
 
 // DON'T CHANGE WITHOUT ALSO CHANGING VHDL TO MATCH
 #define ADDR_WIDTH 15
-#define MAX_SIZE 100//(1<<ADDR_WIDTH)
+#define MAX_SIZE (1<<ADDR_WIDTH)
 #define MEM_IN_ADDR 0
 #define MEM_OUT_ADDR 0
 #define GO_ADDR ((1<<MMAP_ADDR_WIDTH)-3)
@@ -26,7 +26,7 @@ using namespace std;
 #define DONE_ADDR ((1<<MMAP_ADDR_WIDTH)-1)
 
 #define MAX_TIMEOUT   2000000
-#define PRINT_TIMEOUT 1
+#define PRINT_TIMEOUT 0
 
 
 // software implementation of the code implemented on the FPGA
@@ -73,7 +73,10 @@ int main(int argc, char* argv[]) {
   clocks[1] = 0.0;
   clocks[2] = 0.0;
   clocks[3] = 0.0;
-  
+
+  if (PRINT_TIMEOUT) {
+    cout << "Started main..." << endl;
+  }
   // initialize board
   Board *board;
   try {
@@ -132,7 +135,9 @@ int main(int argc, char* argv[]) {
   // wait for the board to assert done
   waitTime.start();
   done = 0;
-  cout << "waiting for done..." << endl;
+  if (PRINT_TIMEOUT) {
+    cout << "waiting for done..." << endl;
+  }
   // return 0;
   waitWhile(0, DONE_ADDR, board);
   // while (!done) {
