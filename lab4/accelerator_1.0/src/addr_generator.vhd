@@ -19,18 +19,18 @@ entity addr_generator is
 end entity addr_generator;
 
 architecture RTL of addr_generator is
-  signal next_addr  : unsigned(C_MEM_ADDR_WIDTH-1 downto 0) := (others => '0');
+  signal next_addr  : unsigned(size'range);
 begin
 
 process (clk, rst)
 begin
   if (rst = '1') then
-    next_addr <= to_unsigned(0, C_MEM_ADDR_WIDTH);
+    next_addr <= to_unsigned(0, size'length);
     done <= '0';
   elsif (rising_edge(clk)) then
     done <= '0';
     if (en = '1') then
-      out_addr  <= std_logic_vector(next_addr);
+      out_addr  <= std_logic_vector(next_addr(C_MEM_ADDR_WIDTH-1 downto 0));
       if next_addr < unsigned(size) then
         next_addr <= next_addr + 1;
       else

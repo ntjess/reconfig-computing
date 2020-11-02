@@ -108,7 +108,7 @@ begin
         port map (
             clk   => clk,
             wen   => mem_out_wr_en,
-            waddr => mem_out_wr_addr,  -- TODO: connect to output address generator (COMPLETE)
+            waddr => mem_out_wr_addr_delay,  -- TODO: connect to output address generator (COMPLETE)
             wdata => mem_out_wr_data,  -- TODO: connect to pipeline output
             raddr => mem_out_rd_addr,
             rdata => mem_out_rd_data);

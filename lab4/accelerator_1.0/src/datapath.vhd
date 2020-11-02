@@ -31,7 +31,7 @@ architecture RTL of datapath is
   signal reg3out : std_logic_vector(7 downto 0);
   signal reg4out : std_logic_vector(7 downto 0);
   
-  signal pipeline_valid : std_logic_vector(1 downto 0) := (others => '0');
+  signal pipeline_valid : std_logic_vector(1 downto 0);
   
 begin
 
