@@ -155,17 +155,17 @@ begin
     -- the read latency is 1 cycle.
     U_MEM_IN_FIFO : entity work.fifo32
         port map (
-            clk_src     => clks(0),
-            clk_dest    => clks(1),
+            wr_clk     => clks(0),
+            rd_clk    => clks(1),
             rst         => rst,
             empty       => mem_in_fifo_empty,
             full        => mem_in_fifo_full,
             almost_full => mem_in_fifo_almost_full,
             -- read anytime the dp is enabled (reading an empty FIFO won't hurt)
-            rd          => dp_en,
-            wr          => mem_in_fifo_wr,
-            data_in     => mem_in_rd_data,  -- data from input memory
-            data_out    => dp_data_in       -- data to datapath
+            rd_en          => dp_en,
+            wr_en          => mem_in_fifo_wr,
+            din     => mem_in_rd_data,  -- data from input memory
+            dout    => dp_data_in       -- data to datapath
             );
 
     -----------------------------------------------------------------------------
@@ -200,15 +200,15 @@ begin
     -- datapath can immediately stall, which prevents data loss.
     U_MEM_OUT_FIFO : entity work.fifo17
         port map (
-            clk_src  => clks(1),
-            clk_dest => clks(0),
+            wr_clk  => clks(1),
+            rd_clk => clks(0),
             rst      => rst,
             empty    => mem_out_fifo_empty,
             full     => mem_out_fifo_full,
-            rd       => mem_out_wr_en,
-            wr       => dp_valid_out,
-            data_in  => dp_data_out,
-            data_out => mem_out_wr_data);
+            rd_en       => mem_out_wr_en,
+            wr_en       => dp_valid_out,
+            din  => dp_data_out,
+            dout => mem_out_wr_data);
 
     -- Output memory
     U_MEM_OUT : entity work.ram(SYNC_READ)
