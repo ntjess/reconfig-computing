@@ -56,6 +56,7 @@ begin
           end if;
 
         when S_WAIT_FOR_ACK =>
+          send_s <= '1';
           if (ack_s = '1') then
             send_s <= '0';
             state_src <= S_RESET_ACK;

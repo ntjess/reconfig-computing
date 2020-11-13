@@ -26,7 +26,7 @@ architecture default of user_app is
 
     signal iterations         : std_logic_vector(31 downto 0);
     signal count              : std_logic_vector(31 downto 0);
-    signal pulse, pulse_sync  : std_logic;
+    signal pulse, pulse_dest_delayed, pulse_src_delayed  : std_logic;
     signal go                 : std_logic;
     signal done, done_delayed : std_logic;
     signal dest_rst           : std_logic;
@@ -75,6 +75,18 @@ begin
             en        => C_1,
             input(0)  => done,
             output(0) => done_delayed);
+            
+    U_PULSE_SRC_DELAY : entity work.delay
+        generic map (
+            cycles => 10,               -- assume 10 cycles is plenty for sync
+            width  => 1,
+            init => "0")
+        port map (
+            clk       => clks(0),
+            rst       => dest_rst,
+            en        => C_1,
+            input(0)  => pulse,
+            output(0) => pulse_src_delayed);
 
     ---------------------------------------------------------------------------
     -- Clock domain 2
@@ -89,7 +101,7 @@ begin
         port map (
             clk    => clks(1),
             rst    => dest_rst,
-            input  => pulse,  -- INCORRECT: not synchronized, will go metastable
+            input  => pulse_dest_delayed,
             output => count);
 
     -- simple way to make sure dest counter is cleared every time
@@ -101,6 +113,18 @@ begin
     -- TODO: Instantiate a dual flop synchronizer to properly synchronize the
     -- pulse signal that crosses domain 1 to domain 2. You will also need to
     -- make minor corrections to the other parts of the code.
+    
+    U_PULSE_DEST_DELAY : entity work.delay
+        generic map (
+            cycles => 2,
+            width  => 1,
+            init => "0")
+        port map (
+            clk       => clks(1),
+            rst       => dest_rst,
+            en        => C_1,
+            input(0)  => pulse_src_delayed,
+            output(0) => pulse_dest_delayed);
 
 
     -- There is actually another synchronization problem with this code that
