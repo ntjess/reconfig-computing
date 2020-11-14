@@ -104,6 +104,7 @@ begin
 
         when S_RESET_ACK =>
           -- send ack unless it is delayed
+          ack_s <= '1';
           if (send_s = '0') then
             ack_s      <= '0';
             state_dest <= S_READY;
