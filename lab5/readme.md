@@ -12,26 +12,36 @@ However, after adding a simple dual-flop synchronizer to the pulse train, this i
 
 ## Part 2
 
-The provided code for part 2 never gave us any timing errors. I.e. there was an average error of `0` even without any changes to the handshake files. However, a closer look at `handshake.vhd` showed the `send_s` and `ack_s` signals are only asserted for 1 cycle in the provided code. So, we added the following lines in the appropriate states:
+The provided code for part 2 never gave us any timing errors. I.e. there was an average error of `0` even without any changes to the handshake files. However, a closer look at `handshake.vhd` showed the `send_s` and `ack_s` signals were not properly synchronized between the two clock domains. So, we added the appropriate dual flop synchronizers similar to part 1 on both signals:
 
 ```vhdl
-when S_WAIT_FOR_ACK =>
-    send_s <= '1'; -- We added this line
-    if (ack_s = '1') then
-        send_s <= '0';
-    state_src <= S_RESET_ACK;
-    end if;
+U_SEND_S_DELAY : entity work.delay
+    generic map (
+        cycles => 2,
+        width  => 1,
+        init => "0")
+    port map (
+        clk       => clk_dest,
+        rst       => rst,
+        en        => '1',
+        input(0)  => send_s,
+        output(0) => send_s_delayed);
         
--- ...
-when S_RESET_ACK =>
-    ack_s <= '1'; -- We added this line
-    if (send_s = '0') then
-        ack_s      <= '0';
-    state_dest <= S_READY;
-    end if;
+U_ACK_S_DELAY : entity work.delay
+    generic map (
+        cycles => 2,
+        width  => 1,
+        init => "0")
+    port map (
+        clk       => clk_src,
+        rst       => rst,
+        en        => '1',
+        input(0)  => ack_s,
+        output(0) => ack_s_delayed);
+  
 ```
 
-This way, the `send` and `ack` signals are asserted indefinitely until the control logic dictates it is time to de-assert them.
+This way, the `send` and `ack` signals are properly synchronized when read from either the `ack` or `send` processes, respectively.
 
 
 
