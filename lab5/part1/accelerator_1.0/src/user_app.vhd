@@ -78,7 +78,7 @@ begin
             
     U_PULSE_SRC_DELAY : entity work.delay
         generic map (
-            cycles => 10,               -- assume 10 cycles is plenty for sync
+            cycles => 1,
             width  => 1,
             init => "0")
         port map (

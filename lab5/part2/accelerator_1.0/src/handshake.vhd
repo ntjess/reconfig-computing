@@ -31,12 +31,37 @@ architecture TRANSITIONAL of handshake is
   signal state_src   : state_type;
   signal state_dest : state_type2;
 
-  signal send_s, ack_s : std_logic;
+  signal send_s, ack_s, send_s_delayed, ack_s_delayed : std_logic;
 begin
 
   -----------------------------------------------------------------------------
   -- State machine in source domain that sends to dest domain and then waits
   -- for an ack
+  
+  U_SEND_S_DELAY : entity work.delay
+    generic map (
+        cycles => 2,
+        width  => 1,
+        init => "0")
+    port map (
+        clk       => clk_dest,
+        rst       => rst,
+        en        => '1',
+        input(0)  => send_s,
+        output(0) => send_s_delayed);
+        
+  U_ACK_S_DELAY : entity work.delay
+    generic map (
+        cycles => 2,
+        width  => 1,
+        init => "0")
+    port map (
+        clk       => clk_src,
+        rst       => rst,
+        en        => '1',
+        input(0)  => ack_s,
+        output(0) => ack_s_delayed);
+  
 
   process(clk_src, rst)
   begin
@@ -56,14 +81,13 @@ begin
           end if;
 
         when S_WAIT_FOR_ACK =>
-          send_s <= '1';
-          if (ack_s = '1') then
+          if (ack_s_delayed = '1') then
             send_s <= '0';
             state_src <= S_RESET_ACK;
           end if;
 
         when S_RESET_ACK =>
-          if (ack_s = '0') then
+          if (ack_s_delayed = '0') then
             ack            <= '1';
             state_src <= S_READY;
           end if;
@@ -90,7 +114,7 @@ begin
       case state_dest is
         when S_READY =>
           -- if source is sending data, assert rcv (received)
-          if (send_s = '1') then
+          if (send_s_delayed = '1') then
             rcv        <= '1';
             state_dest <= S_SEND_ACK;
           end if;
@@ -104,8 +128,7 @@ begin
 
         when S_RESET_ACK =>
           -- send ack unless it is delayed
-          ack_s <= '1';
-          if (send_s = '0') then
+          if (send_s_delayed = '0') then
             ack_s      <= '0';
             state_dest <= S_READY;
           end if;
