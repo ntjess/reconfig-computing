@@ -4,6 +4,7 @@
 library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
+use ieee.math_real.all;
 
 use work.config_pkg.all;
 
@@ -48,5 +49,13 @@ package user_pkg is
 
     constant C_1 : std_logic := '1';
     constant C_0 : std_logic := '0';
+    
+    function clog2(input : positive) return natural;
+end package;
 
-end user_pkg;
+package body user_pkg is
+function clog2(input : positive) return natural is
+    begin
+        return natural(ceil(log2(real(input))));
+    end function;
+end package body;
