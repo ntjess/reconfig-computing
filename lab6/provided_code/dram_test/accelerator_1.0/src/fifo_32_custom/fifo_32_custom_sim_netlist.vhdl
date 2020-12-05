@@ -1,10 +1,10 @@
 -- Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2020.1 (win64) Build 2902540 Wed May 27 19:54:49 MDT 2020
--- Date        : Sat Dec  5 13:59:00 2020
+-- Date        : Sat Dec  5 13:58:59 2020
 -- Host        : ece-m119-nathan running 64-bit major release  (build 9200)
--- Command     : write_vhdl -force -mode funcsim
---               c:/Users/njessurun/Desktop/Git/reconfig-computing/lab6/provided_code/dram_test/accelerator_1.0/src/fifo_32_custom/fifo_32_custom_sim_netlist.vhdl
+-- Command     : write_vhdl -force -mode funcsim -rename_top fifo_32_custom -prefix
+--               fifo_32_custom_ fifo_32_custom_sim_netlist.vhdl
 -- Design      : fifo_32_custom
 -- Purpose     : This VHDL netlist is a functional simulation representation of the design and should not be modified or
 --               synthesized. This netlist cannot be used for SDF annotated simulation.
@@ -25,8 +25,6 @@ entity fifo_32_custom_xpm_cdc_gray is
   attribute DEST_SYNC_FF of fifo_32_custom_xpm_cdc_gray : entity is 2;
   attribute INIT_SYNC_FF : integer;
   attribute INIT_SYNC_FF of fifo_32_custom_xpm_cdc_gray : entity is 0;
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of fifo_32_custom_xpm_cdc_gray : entity is "xpm_cdc_gray";
   attribute REG_OUTPUT : integer;
   attribute REG_OUTPUT of fifo_32_custom_xpm_cdc_gray : entity is 1;
   attribute SIM_ASSERT_CHK : integer;
@@ -913,8 +911,6 @@ entity fifo_32_custom_xpm_cdc_single is
   attribute DEST_SYNC_FF of fifo_32_custom_xpm_cdc_single : entity is 5;
   attribute INIT_SYNC_FF : integer;
   attribute INIT_SYNC_FF of fifo_32_custom_xpm_cdc_single : entity is 0;
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of fifo_32_custom_xpm_cdc_single : entity is "xpm_cdc_single";
   attribute SIM_ASSERT_CHK : integer;
   attribute SIM_ASSERT_CHK of fifo_32_custom_xpm_cdc_single : entity is 0;
   attribute SRC_INPUT_REG : integer;
@@ -1112,8 +1108,6 @@ entity fifo_32_custom_xpm_cdc_sync_rst is
   attribute INIT of fifo_32_custom_xpm_cdc_sync_rst : entity is "1";
   attribute INIT_SYNC_FF : integer;
   attribute INIT_SYNC_FF of fifo_32_custom_xpm_cdc_sync_rst : entity is 0;
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of fifo_32_custom_xpm_cdc_sync_rst : entity is "xpm_cdc_sync_rst";
   attribute SIM_ASSERT_CHK : integer;
   attribute SIM_ASSERT_CHK of fifo_32_custom_xpm_cdc_sync_rst : entity is 0;
   attribute VERSION : integer;
@@ -1341,8 +1335,6 @@ entity fifo_32_custom_blk_mem_gen_prim_wrapper is
     \out\ : in STD_LOGIC;
     wr_en : in STD_LOGIC
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of fifo_32_custom_blk_mem_gen_prim_wrapper : entity is "blk_mem_gen_prim_wrapper";
 end fifo_32_custom_blk_mem_gen_prim_wrapper;
 
 architecture STRUCTURE of fifo_32_custom_blk_mem_gen_prim_wrapper is
@@ -1516,8 +1508,6 @@ entity fifo_32_custom_rd_bin_cntr is
     E : in STD_LOGIC_VECTOR ( 0 to 0 );
     rd_clk : in STD_LOGIC
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of fifo_32_custom_rd_bin_cntr : entity is "rd_bin_cntr";
 end fifo_32_custom_rd_bin_cntr;
 
 architecture STRUCTURE of fifo_32_custom_rd_bin_cntr is
@@ -1882,8 +1872,6 @@ entity fifo_32_custom_rd_fwft is
     rd_en : in STD_LOGIC;
     \DEVICE_7SERIES.NO_BMM_INFO.SDP.WIDE_PRIM18.ram\ : in STD_LOGIC
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of fifo_32_custom_rd_fwft : entity is "rd_fwft";
 end fifo_32_custom_rd_fwft;
 
 architecture STRUCTURE of fifo_32_custom_rd_fwft is
@@ -2124,8 +2112,6 @@ entity fifo_32_custom_rd_status_flags_as is
     ram_empty_i_reg_0 : in STD_LOGIC;
     rd_clk : in STD_LOGIC
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of fifo_32_custom_rd_status_flags_as : entity is "rd_status_flags_as";
 end fifo_32_custom_rd_status_flags_as;
 
 architecture STRUCTURE of fifo_32_custom_rd_status_flags_as is
@@ -2181,8 +2167,6 @@ entity fifo_32_custom_wr_bin_cntr is
     E : in STD_LOGIC_VECTOR ( 0 to 0 );
     wr_clk : in STD_LOGIC
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of fifo_32_custom_wr_bin_cntr : entity is "wr_bin_cntr";
 end fifo_32_custom_wr_bin_cntr;
 
 architecture STRUCTURE of fifo_32_custom_wr_bin_cntr is
@@ -2612,8 +2596,6 @@ entity fifo_32_custom_wr_pf_as is
     \gpf1.prog_full_i_reg_1\ : in STD_LOGIC;
     \out\ : in STD_LOGIC
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of fifo_32_custom_wr_pf_as : entity is "wr_pf_as";
 end fifo_32_custom_wr_pf_as;
 
 architecture STRUCTURE of fifo_32_custom_wr_pf_as is
@@ -2783,8 +2765,6 @@ entity fifo_32_custom_wr_status_flags_as is
     comp2 : in STD_LOGIC;
     \gaf.ram_almost_full_i_reg_0\ : in STD_LOGIC
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of fifo_32_custom_wr_status_flags_as : entity is "wr_status_flags_as";
 end fifo_32_custom_wr_status_flags_as;
 
 architecture STRUCTURE of fifo_32_custom_wr_status_flags_as is
@@ -2884,8 +2864,6 @@ entity fifo_32_custom_blk_mem_gen_prim_width is
     \out\ : in STD_LOGIC;
     wr_en : in STD_LOGIC
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of fifo_32_custom_blk_mem_gen_prim_width : entity is "blk_mem_gen_prim_width";
 end fifo_32_custom_blk_mem_gen_prim_width;
 
 architecture STRUCTURE of fifo_32_custom_blk_mem_gen_prim_width is
@@ -3096,8 +3074,6 @@ entity fifo_32_custom_clk_x_pntrs is
     rd_clk : in STD_LOGIC;
     \src_gray_ff_reg[6]_0\ : in STD_LOGIC_VECTOR ( 6 downto 0 )
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of fifo_32_custom_clk_x_pntrs : entity is "clk_x_pntrs";
 end fifo_32_custom_clk_x_pntrs;
 
 architecture STRUCTURE of fifo_32_custom_clk_x_pntrs is
@@ -3359,8 +3335,6 @@ entity fifo_32_custom_rd_logic is
     rd_en : in STD_LOGIC;
     WR_PNTR_RD : in STD_LOGIC_VECTOR ( 6 downto 0 )
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of fifo_32_custom_rd_logic : entity is "rd_logic";
 end fifo_32_custom_rd_logic;
 
 architecture STRUCTURE of fifo_32_custom_rd_logic is
@@ -3421,8 +3395,6 @@ entity fifo_32_custom_reset_blk_ramfifo is
     rd_clk : in STD_LOGIC;
     POR_B : in STD_LOGIC
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of fifo_32_custom_reset_blk_ramfifo : entity is "reset_blk_ramfifo";
 end fifo_32_custom_reset_blk_ramfifo;
 
 architecture STRUCTURE of fifo_32_custom_reset_blk_ramfifo is
@@ -3883,8 +3855,6 @@ entity fifo_32_custom_wr_logic is
     comp2 : in STD_LOGIC;
     \gaf.ram_almost_full_i_reg\ : in STD_LOGIC
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of fifo_32_custom_wr_logic : entity is "wr_logic";
 end fifo_32_custom_wr_logic;
 
 architecture STRUCTURE of fifo_32_custom_wr_logic is
@@ -3953,8 +3923,6 @@ entity fifo_32_custom_blk_mem_gen_generic_cstr is
     \out\ : in STD_LOGIC;
     wr_en : in STD_LOGIC
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of fifo_32_custom_blk_mem_gen_generic_cstr : entity is "blk_mem_gen_generic_cstr";
 end fifo_32_custom_blk_mem_gen_generic_cstr;
 
 architecture STRUCTURE of fifo_32_custom_blk_mem_gen_generic_cstr is
@@ -3998,8 +3966,6 @@ entity fifo_32_custom_blk_mem_gen_top is
     \out\ : in STD_LOGIC;
     wr_en : in STD_LOGIC
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of fifo_32_custom_blk_mem_gen_top : entity is "blk_mem_gen_top";
 end fifo_32_custom_blk_mem_gen_top;
 
 architecture STRUCTURE of fifo_32_custom_blk_mem_gen_top is
@@ -4043,8 +4009,6 @@ entity fifo_32_custom_blk_mem_gen_v8_4_4_synth is
     \out\ : in STD_LOGIC;
     wr_en : in STD_LOGIC
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of fifo_32_custom_blk_mem_gen_v8_4_4_synth : entity is "blk_mem_gen_v8_4_4_synth";
 end fifo_32_custom_blk_mem_gen_v8_4_4_synth;
 
 architecture STRUCTURE of fifo_32_custom_blk_mem_gen_v8_4_4_synth is
@@ -4088,8 +4052,6 @@ entity fifo_32_custom_blk_mem_gen_v8_4_4 is
     \out\ : in STD_LOGIC;
     wr_en : in STD_LOGIC
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of fifo_32_custom_blk_mem_gen_v8_4_4 : entity is "blk_mem_gen_v8_4_4";
 end fifo_32_custom_blk_mem_gen_v8_4_4;
 
 architecture STRUCTURE of fifo_32_custom_blk_mem_gen_v8_4_4 is
@@ -4134,8 +4096,6 @@ entity fifo_32_custom_memory is
     wr_en : in STD_LOGIC;
     \goreg_bm.dout_i_reg[31]_0\ : in STD_LOGIC_VECTOR ( 0 to 0 )
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of fifo_32_custom_memory : entity is "memory";
 end fifo_32_custom_memory;
 
 architecture STRUCTURE of fifo_32_custom_memory is
@@ -4531,8 +4491,6 @@ entity fifo_32_custom_fifo_generator_ramfifo is
     wr_en : in STD_LOGIC;
     rd_en : in STD_LOGIC
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of fifo_32_custom_fifo_generator_ramfifo : entity is "fifo_generator_ramfifo";
 end fifo_32_custom_fifo_generator_ramfifo;
 
 architecture STRUCTURE of fifo_32_custom_fifo_generator_ramfifo is
@@ -4677,8 +4635,6 @@ entity fifo_32_custom_fifo_generator_top is
     wr_en : in STD_LOGIC;
     rd_en : in STD_LOGIC
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of fifo_32_custom_fifo_generator_top : entity is "fifo_generator_top";
 end fifo_32_custom_fifo_generator_top;
 
 architecture STRUCTURE of fifo_32_custom_fifo_generator_top is
@@ -4720,8 +4676,6 @@ entity fifo_32_custom_fifo_generator_v13_2_5_synth is
     wr_en : in STD_LOGIC;
     rd_en : in STD_LOGIC
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of fifo_32_custom_fifo_generator_v13_2_5_synth : entity is "fifo_generator_v13_2_5_synth";
 end fifo_32_custom_fifo_generator_v13_2_5_synth;
 
 architecture STRUCTURE of fifo_32_custom_fifo_generator_v13_2_5_synth is
@@ -5385,8 +5339,6 @@ entity fifo_32_custom_fifo_generator_v13_2_5 is
   attribute C_WR_PNTR_WIDTH_WRCH of fifo_32_custom_fifo_generator_v13_2_5 : entity is 4;
   attribute C_WR_RESPONSE_LATENCY : integer;
   attribute C_WR_RESPONSE_LATENCY of fifo_32_custom_fifo_generator_v13_2_5 : entity is 1;
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of fifo_32_custom_fifo_generator_v13_2_5 : entity is "fifo_generator_v13_2_5";
 end fifo_32_custom_fifo_generator_v13_2_5;
 
 architecture STRUCTURE of fifo_32_custom_fifo_generator_v13_2_5 is

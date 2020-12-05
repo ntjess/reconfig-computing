@@ -1,10 +1,10 @@
 -- Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2020.1 (win64) Build 2902540 Wed May 27 19:54:49 MDT 2020
--- Date        : Sat Dec  5 13:59:00 2020
+-- Date        : Sat Dec  5 13:58:59 2020
 -- Host        : ece-m119-nathan running 64-bit major release  (build 9200)
--- Command     : write_vhdl -force -mode synth_stub
---               c:/Users/njessurun/Desktop/Git/reconfig-computing/lab6/provided_code/dram_test/accelerator_1.0/src/fifo_32_custom/fifo_32_custom_stub.vhdl
+-- Command     : write_vhdl -force -mode synth_stub -rename_top fifo_32_custom -prefix
+--               fifo_32_custom_ fifo_32_custom_stub.vhdl
 -- Design      : fifo_32_custom
 -- Purpose     : Stub declaration of top-level module interface
 -- Device      : xc7z020clg484-1

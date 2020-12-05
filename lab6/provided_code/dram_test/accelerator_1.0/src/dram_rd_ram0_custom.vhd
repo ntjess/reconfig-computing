@@ -61,7 +61,7 @@ architecture RTL of dram_rd_ram0_custom is
   signal splitter_ready, splitter_en : std_logic;
   signal valid_s:  std_logic;
   
-  constant max_count_val : positive := to_integer(unsigned(size));
+  constant max_count_val : integer := 2**16;
   signal count_val : std_logic_vector(clog2(max_count_val + 1) - 1 downto 0);
   signal done_s : std_logic;
 begin
@@ -186,7 +186,7 @@ begin
       output => count_val
     );
 
-  done_s <= '1' when (fifo_empty = '1') and (unsigned(count_val) = unsigned(size_reg)) else '0';
+  done_s <= '1' when (fifo_empty = '1') and (to_integer(unsigned(count_val)) = to_integer(unsigned(size_reg))) else '0';
   done <= done_s;
   valid <= valid_s;
 
