@@ -89,7 +89,7 @@ architecture default of wrapper is
 
     signal sw_rst, rst_s : std_logic;
 
-    component dram_rd_ram0
+    component dram_rd_ram0_custom
         port(dram_clk   : in  std_logic;
              user_clk   : in  std_logic;
              rst        : in  std_logic;
