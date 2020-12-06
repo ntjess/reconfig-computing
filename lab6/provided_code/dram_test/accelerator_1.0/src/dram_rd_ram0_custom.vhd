@@ -38,7 +38,7 @@ architecture RTL of dram_rd_ram0_custom is
         din : in std_logic_vector(31 downto 0);
         wr_en : in std_logic;
         rd_en : in std_logic;
-        dout : out std_logic_vector(31 downto 0);
+        dout : out std_logic_vector(15 downto 0);
         full : out std_logic;
         almost_full : out std_logic;
         empty : out std_logic;
@@ -56,9 +56,8 @@ architecture RTL of dram_rd_ram0_custom is
   
   signal fifo_empty : std_logic;
   signal fifo_prog_full : std_logic;
-  signal fifo_dout : std_logic_vector(C_RAM0_WR_DATA_WIDTH-1 downto 0);
+  signal fifo_din : std_logic_vector(dram_rd_data'range);
   
-  signal splitter_ready, splitter_en : std_logic;
   signal valid_s:  std_logic;
   
   constant max_count_val : integer := 2**16;
@@ -79,15 +78,17 @@ begin
       ack       => open
     );
         
+    -- Swap input halves so fifo slices are correctly ordered    
+    fifo_din <= dram_rd_data((dram_rd_data'length/2)-1 downto 0) & dram_rd_data(dram_rd_data'length-1 downto (dram_rd_data'length/2));
     U_FIFO : fifo_32_custom
       port map(
         rst         => rst,
         wr_clk      => dram_clk,
         rd_clk      => user_clk,
-        din         => dram_rd_data,
+        din         => fifo_din,
         wr_en       => dram_rd_valid,
         rd_en       => rd_en,
-        dout        => fifo_dout,
+        dout        => data,
         full        => open,
         almost_full => open,
         empty       => fifo_empty,
@@ -95,40 +96,8 @@ begin
         wr_rst_busy => open,
         rd_rst_busy => open
       );
+      valid_s <= not fifo_empty;
       
-    -- U_FIFO : entity work.fifo_32_custom
-      -- port map(
-        -- rst       => rst,
-        -- wr_clk    => dram_clk,
-        -- rd_clk    => user_clk,
-        -- din       => dram_rd_data,
-        -- wr_en     => dram_rd_valid,
-        -- rd_en     => rd_en,
-        -- dout      => fifo_dout,
-        -- full      => open,
-        -- empty     => fifo_empty,
-        -- prog_full => fifo_prog_full
-      -- );
-      
-    -- Splitter is ready when all valid data is gone. So,
-    -- data is valid as long as the splitter can't accept new data
-    valid_s <= not splitter_ready;
-    splitter_en <= not fifo_empty;
-    U_SPLITTER : entity work.data_splitter
-      generic map(
-        in_width  => C_RAM0_WR_DATA_WIDTH,
-        out_width => C_RAM0_RD_DATA_WIDTH
-      )
-      port map(
-        clk       => user_clk,
-        rst       => rst,
-        latch     => splitter_ready and not fifo_empty,
-        en        => splitter_en,
-        din       => fifo_dout,
-        dout      => data,
-        ready     => splitter_ready
-      );
-  
   -- DRAM Clock
   
   en_addr_gen <= dram_ready and (not fifo_prog_full) and (not done_s);
@@ -186,7 +155,7 @@ begin
       output => count_val
     );
 
-  done_s <= '1' when (fifo_empty = '1') and (to_integer(unsigned(count_val)) = to_integer(unsigned(size_reg))) and (splitter_ready = '1') else '0';
+  done_s <= '1' when (fifo_empty = '1') and (to_integer(unsigned(count_val)) = to_integer(unsigned(size_reg))) else '0';
   done <= done_s;
   valid <= valid_s;
 
