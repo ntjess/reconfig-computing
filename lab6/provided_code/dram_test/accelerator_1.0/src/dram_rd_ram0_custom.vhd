@@ -122,7 +122,7 @@ begin
       port map(
         clk       => user_clk,
         rst       => rst,
-        latch     => valid_s,
+        latch     => splitter_ready and not fifo_empty,
         en        => splitter_en,
         din       => fifo_dout,
         dout      => data,
@@ -186,7 +186,7 @@ begin
       output => count_val
     );
 
-  done_s <= '1' when (fifo_empty = '1') and (to_integer(unsigned(count_val)) = to_integer(unsigned(size_reg))) else '0';
+  done_s <= '1' when (fifo_empty = '1') and (to_integer(unsigned(count_val)) = to_integer(unsigned(size_reg))) and (splitter_ready = '1') else '0';
   done <= done_s;
   valid <= valid_s;
 

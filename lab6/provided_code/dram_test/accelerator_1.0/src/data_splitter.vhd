@@ -27,7 +27,8 @@ architecture RTL of data_splitter is
   signal valids : unsigned(n_iters downto 0);
   signal din_iter : unsigned(din'range);
 begin
-  
+  -- Ready when all the valid bits are gone
+  ready <= not valids(0);
   
   process (clk, rst) is
     
@@ -38,9 +39,6 @@ begin
     elsif rising_edge(clk) then
       if en = '1' then
         dout <= std_logic_vector(din_iter(out_width-1 downto 0));
-        -- Ready when all the valid bits are gone
-        ready <= not valids(0);
-        
         -- keep maing out_width sized chunks available until '0' is shifted
         -- into the last bit of valids. At that point, all valid data has been
         -- retrieved and 'ready' will be set to '1'
