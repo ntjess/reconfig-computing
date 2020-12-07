@@ -48,8 +48,8 @@ architecture RTL of dram_rd_ram0_custom is
       );
   end component;
 
-  signal size_reg : std_logic_vector(size'range);
-  signal start_addr_reg : std_logic_vector(start_addr'range);
+  signal size_reg_uclk, size_reg_dclk : std_logic_vector(size'range);
+  signal start_addr_reg_uclk, start_addr_reg_dclk : std_logic_vector(start_addr'range);
   
   signal go_addr_gen : std_logic;
   signal en_addr_gen : std_logic;
@@ -100,6 +100,19 @@ begin
       
   -- DRAM Clock
   
+  U_SIZE_DELAY_REG_DCLK : entity work.reg
+    generic map(
+      width => size'length,
+      init  => '0'
+    )
+    port map(
+      clk    => dram_clk,
+      rst    => rst,
+      en     => '1',
+      input  => size_reg_uclk,
+      output => size_reg_dclk
+    );
+  
   en_addr_gen <= dram_ready and (not fifo_prog_full) and (not done_s);
   U_ADDR_GEN : entity work.addr_gen
     generic map(
@@ -108,8 +121,8 @@ begin
     port map(
       clk => dram_clk,
       rst => rst,
-      size => size_reg(C_RAM0_ADDR_WIDTH downto 0),
-      start_addr => start_addr_reg,
+      size => size_reg_dclk(C_RAM0_ADDR_WIDTH downto 0),
+      start_addr => start_addr_reg_dclk,
       go => go_addr_gen,
       en => en_addr_gen,
       rd_en => dram_rd_en,
@@ -117,7 +130,7 @@ begin
     );
     
   -- User clock
-  U_SIZE_DELAY_REG : entity work.reg
+  U_SIZE_DELAY_REG_UCLK : entity work.reg
     generic map(
       width => size'length,
       init  => '0'
@@ -127,7 +140,7 @@ begin
       rst    => rst,
       en     => '1',
       input  => size,
-      output => size_reg
+      output => size_reg_uclk
     );
     
   U_START_ADDR_DELAY_REG : entity work.reg
@@ -140,7 +153,7 @@ begin
       rst    => rst,
       en     => '1',
       input  => start_addr,
-      output => start_addr_reg
+      output => start_addr_reg_uclk
     );
   
   U_COUNTER : entity work.counter
@@ -155,7 +168,7 @@ begin
       output => count_val
     );
 
-  done_s <= '1' when (fifo_empty = '1') and (to_integer(unsigned(count_val)) = to_integer(unsigned(size_reg))) else '0';
+  done_s <= '1' when (fifo_empty = '1') and (to_integer(unsigned(count_val)) = to_integer(unsigned(size_reg_dclk))) else '0';
   done <= done_s;
   valid <= valid_s;
 
