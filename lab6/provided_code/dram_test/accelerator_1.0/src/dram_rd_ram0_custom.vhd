@@ -3,6 +3,7 @@ use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 
 use work.user_pkg.all;
+use work.math_custom.all;
 
 entity dram_rd_ram0_custom is
   port(
@@ -61,7 +62,7 @@ architecture RTL of dram_rd_ram0_custom is
   signal valid_s:  std_logic;
   
   constant max_count_val : integer := 2**16;
-  signal count_val : std_logic_vector(clog2(max_count_val + 1) - 1 downto 0);
+  signal count_val : std_logic_vector(bitsNeeded(max_count_val) - 1 downto 0);
   signal done_s : std_logic;
 begin
   

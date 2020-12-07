@@ -13,6 +13,7 @@ use ieee.math_real.all;
 -- include a custom package that defines a function for computing the number of
 -- bits in signal
 use work.user_pkg.all;
+use work.math_custom.all;
 
 entity counter is
   generic(max_value : positive := 15);

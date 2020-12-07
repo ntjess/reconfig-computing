@@ -20,7 +20,7 @@ end wrapper_tb;
 
 architecture behavior of wrapper_tb is
 
-    constant TEST_SIZE  : integer :=  2**10;
+    constant TEST_SIZE  : integer :=  2**8;
     constant DMA_SIZE : integer := integer(ceil(real(TEST_SIZE)*real(C_RAM0_RD_DATA_WIDTH)/real(C_DRAM0_DATA_WIDTH)));
     constant MAX_CYCLES : integer := TEST_SIZE*100;
 

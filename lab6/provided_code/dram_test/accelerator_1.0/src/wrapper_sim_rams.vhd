@@ -89,7 +89,7 @@ architecture default of wrapper_sim_rams is
 
     signal sw_rst, rst_s : std_logic;
 
-    component dram_rd_ram0_0
+    component dram_rd_ram0_custom
         port(dram_clk   : in  std_logic;
              user_clk   : in  std_logic;
              rst        : in  std_logic;
@@ -239,7 +239,7 @@ begin
     ----------------------------------------------------------------------
     -- Instantiate DMA controllers
 
-    U_DRAM0_RD : dram_rd_ram0_0
+    U_DRAM0_RD : dram_rd_ram0_custom
         port map (
             -- user dma control signals
             dram_clk   => clks(C_CLK_DRAM),
