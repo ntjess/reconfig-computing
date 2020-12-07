@@ -20,7 +20,7 @@ end wrapper_tb;
 
 architecture behavior of wrapper_tb is
 
-    constant TEST_SIZE  : integer := 256;
+    constant TEST_SIZE  : integer :=  8192;
     constant DMA_SIZE : integer := integer(ceil(real(TEST_SIZE)*real(C_RAM0_RD_DATA_WIDTH)/real(C_DRAM0_DATA_WIDTH)));
     constant MAX_CYCLES : integer := TEST_SIZE*100;
 
@@ -45,7 +45,7 @@ architecture behavior of wrapper_tb is
     
 begin
 
-    UUT : entity work.wrapper
+    UUT : entity work.wrapper_sim_rams
         port map (
             clks         => clks,
             rst          => rst,
