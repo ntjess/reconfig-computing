@@ -169,7 +169,7 @@
       <spirit:parameters>
         <spirit:parameter>
           <spirit:name>WIZ_DATA_WIDTH</spirit:name>
-          <spirit:value spirit:format="long" spirit:id="BUSIFPARAM_VALUE.S00_AXI.WIZ_DATA_WIDTH" spirit:choiceRef="choices_0">32</spirit:value>
+          <spirit:value spirit:format="long" spirit:id="BUSIFPARAM_VALUE.S00_AXI.WIZ_DATA_WIDTH" spirit:choiceRef="choice_list_6fc15197">32</spirit:value>
         </spirit:parameter>
         <spirit:parameter>
           <spirit:name>WIZ_NUM_REG</spirit:name>
@@ -177,7 +177,7 @@
         </spirit:parameter>
         <spirit:parameter>
           <spirit:name>SUPPORTS_NARROW_BURST</spirit:name>
-          <spirit:value spirit:format="long" spirit:id="BUSIFPARAM_VALUE.S00_AXI.SUPPORTS_NARROW_BURST" spirit:choiceRef="choices_1">0</spirit:value>
+          <spirit:value spirit:format="long" spirit:id="BUSIFPARAM_VALUE.S00_AXI.SUPPORTS_NARROW_BURST" spirit:choiceRef="choice_pairs_ce1226b1">0</spirit:value>
         </spirit:parameter>
       </spirit:parameters>
     </spirit:busInterface>
@@ -199,7 +199,7 @@
       <spirit:parameters>
         <spirit:parameter>
           <spirit:name>POLARITY</spirit:name>
-          <spirit:value spirit:id="BUSIFPARAM_VALUE.S00_AXI_RST.POLARITY">ACTIVE_LOW</spirit:value>
+          <spirit:value spirit:id="BUSIFPARAM_VALUE.S00_AXI_RST.POLARITY" spirit:choiceRef="choice_list_74b5137e">ACTIVE_LOW</spirit:value>
         </spirit:parameter>
       </spirit:parameters>
     </spirit:busInterface>
@@ -242,11 +242,11 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>OFFSET_BASE_PARAM</spirit:name>
-            <spirit:value spirit:id="ADDRBLOCKPARAM_VALUE.S00_AXI_REG.OFFSET_BASE_PARAM" spirit:dependency="ADDRBLOCKPARAM_VALUE.S00_AXI_reg.OFFSET_BASE_PARAM">C_S00_AXI_BASEADDR</spirit:value>
+            <spirit:value spirit:id="ADDRBLOCKPARAM_VALUE.S00_AXI_REG.OFFSET_BASE_PARAM" spirit:dependency="ADDRBLOCKPARAM_VALUE.S00_AXI_reg.OFFSET_BASE_PARAM">0</spirit:value>
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>OFFSET_HIGH_PARAM</spirit:name>
-            <spirit:value spirit:id="ADDRBLOCKPARAM_VALUE.S00_AXI_REG.OFFSET_HIGH_PARAM" spirit:dependency="ADDRBLOCKPARAM_VALUE.S00_AXI_reg.OFFSET_HIGH_PARAM">C_S00_AXI_HIGHADDR</spirit:value>
+            <spirit:value spirit:id="ADDRBLOCKPARAM_VALUE.S00_AXI_REG.OFFSET_HIGH_PARAM" spirit:dependency="ADDRBLOCKPARAM_VALUE.S00_AXI_reg.OFFSET_HIGH_PARAM">0</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:addressBlock>
@@ -261,7 +261,7 @@
         <spirit:language>vhdl</spirit:language>
         <spirit:modelName>accelerator_v1_0</spirit:modelName>
         <spirit:fileSetRef>
-          <spirit:localName>xilinx_vhdlsynthesis_xilinx_com_ip_fifo_generator_12_0__ref_view_fileset</spirit:localName>
+          <spirit:localName>xilinx_vhdlsynthesis_xilinx_com_ip_fifo_generator_13_2__ref_view_fileset</spirit:localName>
         </spirit:fileSetRef>
         <spirit:fileSetRef>
           <spirit:localName>xilinx_vhdlsynthesis_view_fileset</spirit:localName>
@@ -269,7 +269,7 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>viewChecksum</spirit:name>
-            <spirit:value>02c3dd13</spirit:value>
+            <spirit:value>2cfa4055</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -280,7 +280,7 @@
         <spirit:language>vhdl</spirit:language>
         <spirit:modelName>accelerator_v1_0</spirit:modelName>
         <spirit:fileSetRef>
-          <spirit:localName>xilinx_vhdlbehavioralsimulation_xilinx_com_ip_fifo_generator_12_0__ref_view_fileset</spirit:localName>
+          <spirit:localName>xilinx_vhdlbehavioralsimulation_xilinx_com_ip_fifo_generator_13_2__ref_view_fileset</spirit:localName>
         </spirit:fileSetRef>
         <spirit:fileSetRef>
           <spirit:localName>xilinx_vhdlbehavioralsimulation_view_fileset</spirit:localName>
@@ -288,7 +288,7 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>viewChecksum</spirit:name>
-            <spirit:value>2afd2946</spirit:value>
+            <spirit:value>39a6da72</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -316,7 +316,7 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>viewChecksum</spirit:name>
-            <spirit:value>dda4df14</spirit:value>
+            <spirit:value>0e5443b4</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -345,21 +345,7 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>viewChecksum</spirit:name>
-            <spirit:value>e0a26891</spirit:value>
-          </spirit:parameter>
-        </spirit:parameters>
-      </spirit:view>
-      <spirit:view>
-        <spirit:name>xilinx_implementation</spirit:name>
-        <spirit:displayName>Implementation</spirit:displayName>
-        <spirit:envIdentifier>:vivado.xilinx.com:implementation</spirit:envIdentifier>
-        <spirit:fileSetRef>
-          <spirit:localName>xilinx_implementation_view_fileset</spirit:localName>
-        </spirit:fileSetRef>
-        <spirit:parameters>
-          <spirit:parameter>
-            <spirit:name>viewChecksum</spirit:name>
-            <spirit:value>b4435146</spirit:value>
+            <spirit:value>3ce8bbef</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -418,12 +404,38 @@
         </spirit:wire>
       </spirit:port>
       <spirit:port>
+        <spirit:name>s00_axi_aclk</spirit:name>
+        <spirit:wire>
+          <spirit:direction>in</spirit:direction>
+          <spirit:wireTypeDefs>
+            <spirit:wireTypeDef>
+              <spirit:typeName>std_logic</spirit:typeName>
+              <spirit:viewNameRef>xilinx_vhdlsynthesis</spirit:viewNameRef>
+              <spirit:viewNameRef>xilinx_vhdlbehavioralsimulation</spirit:viewNameRef>
+            </spirit:wireTypeDef>
+          </spirit:wireTypeDefs>
+        </spirit:wire>
+      </spirit:port>
+      <spirit:port>
+        <spirit:name>s00_axi_aresetn</spirit:name>
+        <spirit:wire>
+          <spirit:direction>in</spirit:direction>
+          <spirit:wireTypeDefs>
+            <spirit:wireTypeDef>
+              <spirit:typeName>std_logic</spirit:typeName>
+              <spirit:viewNameRef>xilinx_vhdlsynthesis</spirit:viewNameRef>
+              <spirit:viewNameRef>xilinx_vhdlbehavioralsimulation</spirit:viewNameRef>
+            </spirit:wireTypeDef>
+          </spirit:wireTypeDefs>
+        </spirit:wire>
+      </spirit:port>
+      <spirit:port>
         <spirit:name>s00_axi_awaddr</spirit:name>
         <spirit:wire>
           <spirit:direction>in</spirit:direction>
           <spirit:vector>
             <spirit:left spirit:format="long" spirit:resolve="dependent" spirit:dependency="(spirit:decode(id(&apos;MODELPARAM_VALUE.C_S00_AXI_ADDR_WIDTH&apos;)) - 1)">19</spirit:left>
-            <spirit:right spirit:format="long" spirit:resolve="immediate">0</spirit:right>
+            <spirit:right spirit:format="long">0</spirit:right>
           </spirit:vector>
           <spirit:wireTypeDefs>
             <spirit:wireTypeDef>
@@ -439,8 +451,8 @@
         <spirit:wire>
           <spirit:direction>in</spirit:direction>
           <spirit:vector>
-            <spirit:left spirit:format="long" spirit:resolve="immediate">2</spirit:left>
-            <spirit:right spirit:format="long" spirit:resolve="immediate">0</spirit:right>
+            <spirit:left spirit:format="long">2</spirit:left>
+            <spirit:right spirit:format="long">0</spirit:right>
           </spirit:vector>
           <spirit:wireTypeDefs>
             <spirit:wireTypeDef>
@@ -483,7 +495,7 @@
           <spirit:direction>in</spirit:direction>
           <spirit:vector>
             <spirit:left spirit:format="long" spirit:resolve="dependent" spirit:dependency="(spirit:decode(id(&apos;MODELPARAM_VALUE.C_S00_AXI_DATA_WIDTH&apos;)) - 1)">31</spirit:left>
-            <spirit:right spirit:format="long" spirit:resolve="immediate">0</spirit:right>
+            <spirit:right spirit:format="long">0</spirit:right>
           </spirit:vector>
           <spirit:wireTypeDefs>
             <spirit:wireTypeDef>
@@ -500,7 +512,7 @@
           <spirit:direction>in</spirit:direction>
           <spirit:vector>
             <spirit:left spirit:format="long" spirit:resolve="dependent" spirit:dependency="((spirit:decode(id(&apos;MODELPARAM_VALUE.C_S00_AXI_DATA_WIDTH&apos;)) / 8) - 1)">3</spirit:left>
-            <spirit:right spirit:format="long" spirit:resolve="immediate">0</spirit:right>
+            <spirit:right spirit:format="long">0</spirit:right>
           </spirit:vector>
           <spirit:wireTypeDefs>
             <spirit:wireTypeDef>
@@ -542,8 +554,8 @@
         <spirit:wire>
           <spirit:direction>out</spirit:direction>
           <spirit:vector>
-            <spirit:left spirit:format="long" spirit:resolve="immediate">1</spirit:left>
-            <spirit:right spirit:format="long" spirit:resolve="immediate">0</spirit:right>
+            <spirit:left spirit:format="long">1</spirit:left>
+            <spirit:right spirit:format="long">0</spirit:right>
           </spirit:vector>
           <spirit:wireTypeDefs>
             <spirit:wireTypeDef>
@@ -586,7 +598,7 @@
           <spirit:direction>in</spirit:direction>
           <spirit:vector>
             <spirit:left spirit:format="long" spirit:resolve="dependent" spirit:dependency="(spirit:decode(id(&apos;MODELPARAM_VALUE.C_S00_AXI_ADDR_WIDTH&apos;)) - 1)">19</spirit:left>
-            <spirit:right spirit:format="long" spirit:resolve="immediate">0</spirit:right>
+            <spirit:right spirit:format="long">0</spirit:right>
           </spirit:vector>
           <spirit:wireTypeDefs>
             <spirit:wireTypeDef>
@@ -602,8 +614,8 @@
         <spirit:wire>
           <spirit:direction>in</spirit:direction>
           <spirit:vector>
-            <spirit:left spirit:format="long" spirit:resolve="immediate">2</spirit:left>
-            <spirit:right spirit:format="long" spirit:resolve="immediate">0</spirit:right>
+            <spirit:left spirit:format="long">2</spirit:left>
+            <spirit:right spirit:format="long">0</spirit:right>
           </spirit:vector>
           <spirit:wireTypeDefs>
             <spirit:wireTypeDef>
@@ -646,7 +658,7 @@
           <spirit:direction>out</spirit:direction>
           <spirit:vector>
             <spirit:left spirit:format="long" spirit:resolve="dependent" spirit:dependency="(spirit:decode(id(&apos;MODELPARAM_VALUE.C_S00_AXI_DATA_WIDTH&apos;)) - 1)">31</spirit:left>
-            <spirit:right spirit:format="long" spirit:resolve="immediate">0</spirit:right>
+            <spirit:right spirit:format="long">0</spirit:right>
           </spirit:vector>
           <spirit:wireTypeDefs>
             <spirit:wireTypeDef>
@@ -662,8 +674,8 @@
         <spirit:wire>
           <spirit:direction>out</spirit:direction>
           <spirit:vector>
-            <spirit:left spirit:format="long" spirit:resolve="immediate">1</spirit:left>
-            <spirit:right spirit:format="long" spirit:resolve="immediate">0</spirit:right>
+            <spirit:left spirit:format="long">1</spirit:left>
+            <spirit:right spirit:format="long">0</spirit:right>
           </spirit:vector>
           <spirit:wireTypeDefs>
             <spirit:wireTypeDef>
@@ -700,32 +712,6 @@
           </spirit:wireTypeDefs>
         </spirit:wire>
       </spirit:port>
-      <spirit:port>
-        <spirit:name>s00_axi_aclk</spirit:name>
-        <spirit:wire>
-          <spirit:direction>in</spirit:direction>
-          <spirit:wireTypeDefs>
-            <spirit:wireTypeDef>
-              <spirit:typeName>std_logic</spirit:typeName>
-              <spirit:viewNameRef>xilinx_vhdlsynthesis</spirit:viewNameRef>
-              <spirit:viewNameRef>xilinx_vhdlbehavioralsimulation</spirit:viewNameRef>
-            </spirit:wireTypeDef>
-          </spirit:wireTypeDefs>
-        </spirit:wire>
-      </spirit:port>
-      <spirit:port>
-        <spirit:name>s00_axi_aresetn</spirit:name>
-        <spirit:wire>
-          <spirit:direction>in</spirit:direction>
-          <spirit:wireTypeDefs>
-            <spirit:wireTypeDef>
-              <spirit:typeName>std_logic</spirit:typeName>
-              <spirit:viewNameRef>xilinx_vhdlsynthesis</spirit:viewNameRef>
-              <spirit:viewNameRef>xilinx_vhdlbehavioralsimulation</spirit:viewNameRef>
-            </spirit:wireTypeDef>
-          </spirit:wireTypeDefs>
-        </spirit:wire>
-      </spirit:port>
     </spirit:ports>
     <spirit:modelParameters>
       <spirit:modelParameter xsi:type="spirit:nameValueTypeType" spirit:dataType="integer">
@@ -744,17 +730,18 @@
   </spirit:model>
   <spirit:choices>
     <spirit:choice>
-      <spirit:name>choices_0</spirit:name>
+      <spirit:name>choice_list_6fc15197</spirit:name>
       <spirit:enumeration>32</spirit:enumeration>
     </spirit:choice>
     <spirit:choice>
-      <spirit:name>choices_1</spirit:name>
+      <spirit:name>choice_list_74b5137e</spirit:name>
+      <spirit:enumeration>ACTIVE_HIGH</spirit:enumeration>
+      <spirit:enumeration>ACTIVE_LOW</spirit:enumeration>
+    </spirit:choice>
+    <spirit:choice>
+      <spirit:name>choice_pairs_ce1226b1</spirit:name>
       <spirit:enumeration spirit:text="true">1</spirit:enumeration>
       <spirit:enumeration spirit:text="false">0</spirit:enumeration>
-    </spirit:choice>
-    <spirit:choice>
-      <spirit:name>choices_2</spirit:name>
-      <spirit:enumeration>32</spirit:enumeration>
     </spirit:choice>
   </spirit:choices>
   <spirit:fileSets>
@@ -769,19 +756,23 @@
         <spirit:userFileType>xci</spirit:userFileType>
       </spirit:file>
       <spirit:file>
+        <spirit:name>src/fifo_32_custom/fifo_32_custom.xci</spirit:name>
+        <spirit:userFileType>xci</spirit:userFileType>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>src/dram_cores/dram_wr_ram1.edn</spirit:name>
+        <spirit:userFileType>edn</spirit:userFileType>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>src/dram_cores/dram_rd_ram1.edn</spirit:name>
+        <spirit:userFileType>edn</spirit:userFileType>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>src/dram_cores/dram_wr_ram0.edn</spirit:name>
+        <spirit:userFileType>edn</spirit:userFileType>
+      </spirit:file>
+      <spirit:file>
         <spirit:name>src/config_pkg.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>src/user_pkg.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>src/ram.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>src/memory_map.vhd</spirit:name>
         <spirit:fileType>vhdlSource</spirit:fileType>
       </spirit:file>
       <spirit:file>
@@ -789,7 +780,11 @@
         <spirit:fileType>vhdlSource</spirit:fileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>src/delay.vhd</spirit:name>
+        <spirit:name>src/user_pkg.vhd</spirit:name>
+        <spirit:fileType>vhdlSource</spirit:fileType>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>src/memory_map.vhd</spirit:name>
         <spirit:fileType>vhdlSource</spirit:fileType>
       </spirit:file>
       <spirit:file>
@@ -797,27 +792,15 @@
         <spirit:fileType>vhdlSource</spirit:fileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>src/dram_cores/dram_wr_ram0.edn</spirit:name>
-        <spirit:userFileType>edn</spirit:userFileType>
-        <spirit:userFileType>edn</spirit:userFileType>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>src/dram_cores/dram_rd_ram1.edn</spirit:name>
-        <spirit:userFileType>edn</spirit:userFileType>
-        <spirit:userFileType>edn</spirit:userFileType>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>src/dram_cores/dram_rd_ram0.edn</spirit:name>
-        <spirit:userFileType>edn</spirit:userFileType>
-        <spirit:userFileType>edn</spirit:userFileType>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>src/dram_cores/dram_wr_ram1.edn</spirit:name>
-        <spirit:userFileType>edn</spirit:userFileType>
-        <spirit:userFileType>edn</spirit:userFileType>
-      </spirit:file>
-      <spirit:file>
         <spirit:name>src/user_app.vhd</spirit:name>
+        <spirit:fileType>vhdlSource</spirit:fileType>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>src/ram.vhd</spirit:name>
+        <spirit:fileType>vhdlSource</spirit:fileType>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>src/delay.vhd</spirit:name>
         <spirit:fileType>vhdlSource</spirit:fileType>
       </spirit:file>
       <spirit:file>
@@ -833,10 +816,40 @@
         <spirit:fileType>vhdlSource</spirit:fileType>
       </spirit:file>
       <spirit:file>
+        <spirit:name>src/addr_gen.vhd</spirit:name>
+        <spirit:fileType>vhdlSource</spirit:fileType>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>src/counter.vhd</spirit:name>
+        <spirit:fileType>vhdlSource</spirit:fileType>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>src/handshake.vhd</spirit:name>
+        <spirit:fileType>vhdlSource</spirit:fileType>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>src/reg.vhd</spirit:name>
+        <spirit:fileType>vhdlSource</spirit:fileType>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>src/dram_rd_ram0_custom.vhd</spirit:name>
+        <spirit:fileType>vhdlSource</spirit:fileType>
+      </spirit:file>
+      <spirit:file>
         <spirit:name>hdl/accelerator_v1_0.vhd</spirit:name>
         <spirit:fileType>vhdlSource</spirit:fileType>
         <spirit:userFileType>CHECKSUM_d974c89a</spirit:userFileType>
       </spirit:file>
+    </spirit:fileSet>
+    <spirit:fileSet>
+      <spirit:name>xilinx_vhdlsynthesis_xilinx_com_ip_fifo_generator_13_2__ref_view_fileset</spirit:name>
+      <spirit:vendorExtensions>
+        <xilinx:subCoreRef>
+          <xilinx:componentRef xilinx:vendor="xilinx.com" xilinx:library="ip" xilinx:name="fifo_generator" xilinx:version="13.2">
+            <xilinx:mode xilinx:name="create_mode"/>
+          </xilinx:componentRef>
+        </xilinx:subCoreRef>
+      </spirit:vendorExtensions>
     </spirit:fileSet>
     <spirit:fileSet>
       <spirit:name>xilinx_vhdlbehavioralsimulation_view_fileset</spirit:name>
@@ -849,19 +862,11 @@
         <spirit:userFileType>xci</spirit:userFileType>
       </spirit:file>
       <spirit:file>
+        <spirit:name>src/fifo_32_custom/fifo_32_custom.xci</spirit:name>
+        <spirit:userFileType>xci</spirit:userFileType>
+      </spirit:file>
+      <spirit:file>
         <spirit:name>src/config_pkg.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>src/user_pkg.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>src/ram.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>src/memory_map.vhd</spirit:name>
         <spirit:fileType>vhdlSource</spirit:fileType>
       </spirit:file>
       <spirit:file>
@@ -869,7 +874,11 @@
         <spirit:fileType>vhdlSource</spirit:fileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>src/delay.vhd</spirit:name>
+        <spirit:name>src/user_pkg.vhd</spirit:name>
+        <spirit:fileType>vhdlSource</spirit:fileType>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>src/memory_map.vhd</spirit:name>
         <spirit:fileType>vhdlSource</spirit:fileType>
       </spirit:file>
       <spirit:file>
@@ -878,6 +887,14 @@
       </spirit:file>
       <spirit:file>
         <spirit:name>src/user_app.vhd</spirit:name>
+        <spirit:fileType>vhdlSource</spirit:fileType>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>src/ram.vhd</spirit:name>
+        <spirit:fileType>vhdlSource</spirit:fileType>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>src/delay.vhd</spirit:name>
         <spirit:fileType>vhdlSource</spirit:fileType>
       </spirit:file>
       <spirit:file>
@@ -893,9 +910,39 @@
         <spirit:fileType>vhdlSource</spirit:fileType>
       </spirit:file>
       <spirit:file>
+        <spirit:name>src/addr_gen.vhd</spirit:name>
+        <spirit:fileType>vhdlSource</spirit:fileType>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>src/counter.vhd</spirit:name>
+        <spirit:fileType>vhdlSource</spirit:fileType>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>src/handshake.vhd</spirit:name>
+        <spirit:fileType>vhdlSource</spirit:fileType>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>src/reg.vhd</spirit:name>
+        <spirit:fileType>vhdlSource</spirit:fileType>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>src/dram_rd_ram0_custom.vhd</spirit:name>
+        <spirit:fileType>vhdlSource</spirit:fileType>
+      </spirit:file>
+      <spirit:file>
         <spirit:name>hdl/accelerator_v1_0.vhd</spirit:name>
         <spirit:fileType>vhdlSource</spirit:fileType>
       </spirit:file>
+    </spirit:fileSet>
+    <spirit:fileSet>
+      <spirit:name>xilinx_vhdlbehavioralsimulation_xilinx_com_ip_fifo_generator_13_2__ref_view_fileset</spirit:name>
+      <spirit:vendorExtensions>
+        <xilinx:subCoreRef>
+          <xilinx:componentRef xilinx:vendor="xilinx.com" xilinx:library="ip" xilinx:name="fifo_generator" xilinx:version="13.2">
+            <xilinx:mode xilinx:name="create_mode"/>
+          </xilinx:componentRef>
+        </xilinx:subCoreRef>
+      </spirit:vendorExtensions>
     </spirit:fileSet>
     <spirit:fileSet>
       <spirit:name>xilinx_softwaredriver_view_fileset</spirit:name>
@@ -911,7 +958,6 @@
       </spirit:file>
       <spirit:file>
         <spirit:name>drivers/accelerator_v1_0/src/Makefile</spirit:name>
-        <spirit:userFileType>unknown</spirit:userFileType>
         <spirit:userFileType>driver_src</spirit:userFileType>
       </spirit:file>
       <spirit:file>
@@ -935,8 +981,8 @@
       <spirit:file>
         <spirit:name>xgui/accelerator_v1_0.tcl</spirit:name>
         <spirit:fileType>tclSource</spirit:fileType>
+        <spirit:userFileType>CHECKSUM_0e5443b4</spirit:userFileType>
         <spirit:userFileType>XGUI_VERSION_2</spirit:userFileType>
-        <spirit:userFileType>CHECKSUM_fd592ead</spirit:userFileType>
       </spirit:file>
     </spirit:fileSet>
     <spirit:fileSet>
@@ -947,53 +993,18 @@
       </spirit:file>
     </spirit:fileSet>
     <spirit:fileSet>
-      <spirit:name>xilinx_vhdlsynthesis_xilinx_com_ip_fifo_generator_12_0__ref_view_fileset</spirit:name>
-      <spirit:vendorExtensions>
-        <xilinx:subCoreRef>
-          <xilinx:componentRef xilinx:vendor="xilinx.com" xilinx:library="ip" xilinx:name="fifo_generator" xilinx:version="12.0">
-            <xilinx:mode xilinx:name="create_mode"/>
-          </xilinx:componentRef>
-        </xilinx:subCoreRef>
-      </spirit:vendorExtensions>
-    </spirit:fileSet>
-    <spirit:fileSet>
-      <spirit:name>xilinx_vhdlbehavioralsimulation_xilinx_com_ip_fifo_generator_12_0__ref_view_fileset</spirit:name>
-      <spirit:vendorExtensions>
-        <xilinx:subCoreRef>
-          <xilinx:componentRef xilinx:vendor="xilinx.com" xilinx:library="ip" xilinx:name="fifo_generator" xilinx:version="12.0">
-            <xilinx:mode xilinx:name="create_mode"/>
-          </xilinx:componentRef>
-        </xilinx:subCoreRef>
-      </spirit:vendorExtensions>
-    </spirit:fileSet>
-    <spirit:fileSet>
       <spirit:name>xilinx_testbench_view_fileset</spirit:name>
       <spirit:file>
         <spirit:name>src/wrapper_tb.vhd</spirit:name>
         <spirit:fileType>vhdlSource</spirit:fileType>
-      </spirit:file>
-    </spirit:fileSet>
-    <spirit:fileSet>
-      <spirit:name>xilinx_implementation_view_fileset</spirit:name>
-      <spirit:file>
-        <spirit:name>src/dram_cores/dram_wr_ram0.edn</spirit:name>
-        <spirit:userFileType>edn</spirit:userFileType>
-        <spirit:userFileType>edn</spirit:userFileType>
+        <spirit:userFileType>USED_IN_simulation</spirit:userFileType>
+        <spirit:userFileType>USED_IN_testbench</spirit:userFileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>src/dram_cores/dram_rd_ram1.edn</spirit:name>
-        <spirit:userFileType>edn</spirit:userFileType>
-        <spirit:userFileType>edn</spirit:userFileType>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>src/dram_cores/dram_rd_ram0.edn</spirit:name>
-        <spirit:userFileType>edn</spirit:userFileType>
-        <spirit:userFileType>edn</spirit:userFileType>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>src/dram_cores/dram_wr_ram1.edn</spirit:name>
-        <spirit:userFileType>edn</spirit:userFileType>
-        <spirit:userFileType>edn</spirit:userFileType>
+        <spirit:name>g:/My Drive/Fall 2020/Reconfig Computing/labs/lab6/dram_proj/dram_proj.tmp/accelerator_v1_0_project/wrapper_tb_behav.wcfg</spirit:name>
+        <spirit:fileType>unknown</spirit:fileType>
+        <spirit:userFileType>USED_IN_simulation</spirit:userFileType>
+        <spirit:userFileType>USED_IN_testbench</spirit:userFileType>
       </spirit:file>
     </spirit:fileSet>
   </spirit:fileSets>
@@ -1003,11 +1014,11 @@
       <spirit:name>C_S00_AXI_DATA_WIDTH</spirit:name>
       <spirit:displayName>C S00 AXI DATA WIDTH</spirit:displayName>
       <spirit:description>Width of S_AXI data bus</spirit:description>
-      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.C_S00_AXI_DATA_WIDTH" spirit:choiceRef="choices_2" spirit:order="3">32</spirit:value>
+      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.C_S00_AXI_DATA_WIDTH" spirit:choiceRef="choice_list_6fc15197" spirit:order="3">32</spirit:value>
       <spirit:vendorExtensions>
         <xilinx:parameterInfo>
           <xilinx:enablement>
-            <xilinx:isEnabled>false</xilinx:isEnabled>
+            <xilinx:isEnabled xilinx:id="PARAM_ENABLEMENT.C_S00_AXI_DATA_WIDTH">false</xilinx:isEnabled>
           </xilinx:enablement>
         </xilinx:parameterInfo>
       </spirit:vendorExtensions>
@@ -1020,7 +1031,7 @@
       <spirit:vendorExtensions>
         <xilinx:parameterInfo>
           <xilinx:enablement>
-            <xilinx:isEnabled>false</xilinx:isEnabled>
+            <xilinx:isEnabled xilinx:id="PARAM_ENABLEMENT.C_S00_AXI_ADDR_WIDTH">false</xilinx:isEnabled>
           </xilinx:enablement>
         </xilinx:parameterInfo>
       </spirit:vendorExtensions>
@@ -1032,7 +1043,7 @@
       <spirit:vendorExtensions>
         <xilinx:parameterInfo>
           <xilinx:enablement>
-            <xilinx:isEnabled>false</xilinx:isEnabled>
+            <xilinx:isEnabled xilinx:id="PARAM_ENABLEMENT.C_S00_AXI_BASEADDR">false</xilinx:isEnabled>
           </xilinx:enablement>
         </xilinx:parameterInfo>
       </spirit:vendorExtensions>
@@ -1044,7 +1055,7 @@
       <spirit:vendorExtensions>
         <xilinx:parameterInfo>
           <xilinx:enablement>
-            <xilinx:isEnabled>false</xilinx:isEnabled>
+            <xilinx:isEnabled xilinx:id="PARAM_ENABLEMENT.C_S00_AXI_HIGHADDR">false</xilinx:isEnabled>
           </xilinx:enablement>
         </xilinx:parameterInfo>
       </spirit:vendorExtensions>
@@ -1063,20 +1074,160 @@
         <xilinx:taxonomy>AXI_Peripheral</xilinx:taxonomy>
       </xilinx:taxonomies>
       <xilinx:displayName>accelerator_v1.0</xilinx:displayName>
-      <xilinx:coreRevision>1</xilinx:coreRevision>
-      <xilinx:coreCreationDateTime>2015-11-12T21:04:42Z</xilinx:coreCreationDateTime>
+      <xilinx:xpmLibraries>
+        <xilinx:xpmLibrary>XPM_CDC</xilinx:xpmLibrary>
+        <xilinx:xpmLibrary>XPM_MEMORY</xilinx:xpmLibrary>
+      </xilinx:xpmLibraries>
+      <xilinx:coreRevision>7</xilinx:coreRevision>
+      <xilinx:coreCreationDateTime>2020-12-09T01:53:18Z</xilinx:coreCreationDateTime>
       <xilinx:tags>
         <xilinx:tag xilinx:name="ufl.edu:user:accelerator:1.0_ARCHIVE_LOCATION">C:/Users/gstitt/Desktop/rc_class/ip_repo/accelerator_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@50b9a3ab_ARCHIVE_LOCATION">c:/Users/njessurun/Desktop/Git/reconfig-computing/lab6/provided_code/dram_test/accelerator_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@3fba8960_ARCHIVE_LOCATION">c:/Users/njessurun/Desktop/Git/reconfig-computing/lab6/provided_code/dram_test/accelerator_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@5d24f675_ARCHIVE_LOCATION">c:/Users/njessurun/Desktop/Git/reconfig-computing/lab6/provided_code/dram_test/accelerator_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@5be36ae4_ARCHIVE_LOCATION">c:/Users/njessurun/Desktop/Git/reconfig-computing/lab6/provided_code/dram_test/accelerator_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@5e471be0_ARCHIVE_LOCATION">c:/Users/njessurun/Desktop/Git/reconfig-computing/lab6/provided_code/dram_test/accelerator_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@4dc9b71c_ARCHIVE_LOCATION">c:/Users/njessurun/Desktop/Git/reconfig-computing/lab6/provided_code/dram_test/accelerator_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@5e461857_ARCHIVE_LOCATION">c:/Users/njessurun/Desktop/Git/reconfig-computing/lab6/provided_code/dram_test/accelerator_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@4de1ea33_ARCHIVE_LOCATION">c:/Users/njessurun/Desktop/Git/reconfig-computing/lab6/provided_code/dram_test/accelerator_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@452eb4bf_ARCHIVE_LOCATION">c:/Users/njessurun/Desktop/Git/reconfig-computing/lab6/provided_code/dram_test/accelerator_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@71085d64_ARCHIVE_LOCATION">c:/Users/njessurun/Desktop/Git/reconfig-computing/lab6/provided_code/dram_test/accelerator_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@4aac76d8_ARCHIVE_LOCATION">c:/Users/njessurun/Desktop/Git/reconfig-computing/lab6/provided_code/dram_test/accelerator_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@5dc8505e_ARCHIVE_LOCATION">c:/Users/njessurun/Desktop/Git/reconfig-computing/lab6/provided_code/dram_test/accelerator_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@54e49cc0_ARCHIVE_LOCATION">c:/Users/njessurun/Desktop/Git/reconfig-computing/lab6/provided_code/dram_test/accelerator_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@40c1139d_ARCHIVE_LOCATION">c:/Users/njessurun/Desktop/Git/reconfig-computing/lab6/provided_code/dram_test/accelerator_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@4c4c21be_ARCHIVE_LOCATION">c:/Users/njessurun/Desktop/Git/reconfig-computing/lab6/provided_code/dram_test/accelerator_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@3422e436_ARCHIVE_LOCATION">c:/Users/njessurun/Desktop/Git/reconfig-computing/lab6/provided_code/dram_test/accelerator_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@1d181265_ARCHIVE_LOCATION">c:/Users/njessurun/Desktop/Git/reconfig-computing/lab6/provided_code/dram_test/accelerator_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@49e4793a_ARCHIVE_LOCATION">c:/Users/njessurun/Desktop/Git/reconfig-computing/lab6/provided_code/dram_test/accelerator_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@5d507fd_ARCHIVE_LOCATION">c:/Users/njessurun/Desktop/Git/reconfig-computing/lab6/provided_code/dram_test/accelerator_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@507081d6_ARCHIVE_LOCATION">c:/Users/njessurun/Desktop/Git/reconfig-computing/lab6/provided_code/dram_test/accelerator_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@68e41137_ARCHIVE_LOCATION">c:/Users/njessurun/Desktop/Git/reconfig-computing/lab6/provided_code/dram_test/accelerator_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@39f2ed02_ARCHIVE_LOCATION">c:/Users/njessurun/Desktop/Git/reconfig-computing/lab6/provided_code/dram_test/accelerator_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@7e24875e_ARCHIVE_LOCATION">c:/Users/njessurun/Desktop/Git/reconfig-computing/lab6/provided_code/dram_test/accelerator_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@2787de03_ARCHIVE_LOCATION">c:/Users/njessurun/Desktop/Git/reconfig-computing/lab6/provided_code/dram_test/accelerator_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@712a6a8f_ARCHIVE_LOCATION">c:/Users/njessurun/Desktop/Git/reconfig-computing/lab6/provided_code/dram_test/accelerator_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@79a6d423_ARCHIVE_LOCATION">c:/Users/njessurun/Desktop/Git/reconfig-computing/lab6/provided_code/dram_test/accelerator_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@1137e6f4_ARCHIVE_LOCATION">c:/Users/njessurun/Desktop/Git/reconfig-computing/lab6/provided_code/dram_test/accelerator_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@646366d9_ARCHIVE_LOCATION">c:/Users/njessurun/Desktop/Git/reconfig-computing/lab6/provided_code/dram_test/accelerator_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@432986d9_ARCHIVE_LOCATION">c:/Users/njessurun/Desktop/Git/reconfig-computing/lab6/provided_code/dram_test/accelerator_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@21b9cdd5_ARCHIVE_LOCATION">c:/Users/njessurun/Desktop/Git/reconfig-computing/lab6/provided_code/dram_test/accelerator_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@3d441dd9_ARCHIVE_LOCATION">c:/Users/njessurun/Desktop/Git/reconfig-computing/lab6/provided_code/dram_test/accelerator_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@10c2d943_ARCHIVE_LOCATION">c:/Users/njessurun/Desktop/Git/reconfig-computing/lab6/provided_code/dram_test/accelerator_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@185c9141_ARCHIVE_LOCATION">c:/Users/njessurun/Desktop/Git/reconfig-computing/lab6/provided_code/dram_test/accelerator_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@139b28f6_ARCHIVE_LOCATION">c:/Users/njessurun/Desktop/Git/reconfig-computing/lab6/provided_code/dram_test/accelerator_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@3fa67c42_ARCHIVE_LOCATION">c:/Users/njessurun/Desktop/Git/reconfig-computing/lab6/provided_code/dram_test/accelerator_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@47b9c0b7_ARCHIVE_LOCATION">c:/Users/njessurun/Desktop/Git/reconfig-computing/lab6/provided_code/dram_test/accelerator_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@2a32c06e_ARCHIVE_LOCATION">c:/Users/njessurun/Desktop/Git/reconfig-computing/lab6/provided_code/dram_test/accelerator_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@5ab7ace7_ARCHIVE_LOCATION">c:/Users/njessurun/Desktop/Git/reconfig-computing/lab6/provided_code/dram_test/accelerator_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@31b2c583_ARCHIVE_LOCATION">c:/Users/njessurun/Desktop/Git/reconfig-computing/lab6/provided_code/dram_test/accelerator_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@3358003a_ARCHIVE_LOCATION">c:/Users/njessurun/Desktop/Git/reconfig-computing/lab6/provided_code/dram_test/accelerator_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@1128a809_ARCHIVE_LOCATION">c:/Users/njessurun/Desktop/Git/reconfig-computing/lab6/provided_code/dram_test/accelerator_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@29f1d6ca_ARCHIVE_LOCATION">c:/Users/njessurun/Desktop/Git/reconfig-computing/lab6/provided_code/dram_test/accelerator_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@561e8f44_ARCHIVE_LOCATION">c:/Users/njessurun/Desktop/Git/reconfig-computing/lab6/provided_code/dram_test/accelerator_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@541b9091_ARCHIVE_LOCATION">c:/Users/njessurun/Desktop/Git/reconfig-computing/lab6/provided_code/dram_test/accelerator_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@5ee5130_ARCHIVE_LOCATION">c:/Users/njessurun/Desktop/Git/reconfig-computing/lab6/provided_code/dram_test/accelerator_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@8869a93_ARCHIVE_LOCATION">c:/Users/njessurun/Desktop/Git/reconfig-computing/lab6/provided_code/dram_test/accelerator_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@5745d9ae_ARCHIVE_LOCATION">c:/Users/njessurun/Desktop/Git/reconfig-computing/lab6/provided_code/dram_test/accelerator_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@7c1429d8_ARCHIVE_LOCATION">c:/Users/njessurun/Desktop/Git/reconfig-computing/lab6/provided_code/dram_test/accelerator_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@263e8c68_ARCHIVE_LOCATION">c:/Users/njessurun/Desktop/Git/reconfig-computing/lab6/provided_code/dram_test/accelerator_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@6b4dc8d0_ARCHIVE_LOCATION">c:/Users/njessurun/Desktop/Git/reconfig-computing/lab6/provided_code/dram_test/accelerator_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@4222984d_ARCHIVE_LOCATION">c:/Users/njessurun/Desktop/Git/reconfig-computing/lab6/provided_code/dram_test/accelerator_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@8de4625_ARCHIVE_LOCATION">c:/Users/njessurun/Desktop/Git/reconfig-computing/lab6/provided_code/dram_test/accelerator_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@6355ae1a_ARCHIVE_LOCATION">c:/Users/njessurun/Desktop/Git/reconfig-computing/lab6/provided_code/dram_test/accelerator_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@1b2515d2_ARCHIVE_LOCATION">c:/Users/njessurun/Desktop/Git/reconfig-computing/lab6/provided_code/dram_test/accelerator_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@1e69e01e_ARCHIVE_LOCATION">c:/Users/njessurun/Desktop/Git/reconfig-computing/lab6/provided_code/dram_test/accelerator_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@2ef96a46_ARCHIVE_LOCATION">c:/Users/njessurun/Desktop/Git/reconfig-computing/lab6/provided_code/dram_test/accelerator_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@2b1e177e_ARCHIVE_LOCATION">c:/Users/njessurun/Desktop/Git/reconfig-computing/lab6/provided_code/dram_test/accelerator_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@3e04a732_ARCHIVE_LOCATION">c:/Users/njessurun/Desktop/Git/reconfig-computing/lab6/provided_code/dram_test/accelerator_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@4568bee4_ARCHIVE_LOCATION">c:/Users/njessurun/Desktop/Git/reconfig-computing/lab6/provided_code/dram_test/accelerator_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@36568287_ARCHIVE_LOCATION">c:/Users/njessurun/Desktop/Git/reconfig-computing/lab6/provided_code/dram_test/accelerator_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@632b462b_ARCHIVE_LOCATION">c:/Users/njessurun/Desktop/Git/reconfig-computing/lab6/provided_code/dram_test/accelerator_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@d112b7f_ARCHIVE_LOCATION">c:/Users/njessurun/Desktop/Git/reconfig-computing/lab6/provided_code/dram_test/accelerator_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@4e4e47b9_ARCHIVE_LOCATION">c:/Users/njessurun/Desktop/Git/reconfig-computing/lab6/provided_code/dram_test/accelerator_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@3b195c99_ARCHIVE_LOCATION">c:/Users/njessurun/Desktop/Git/reconfig-computing/lab6/provided_code/dram_test/accelerator_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@2b61b3f1_ARCHIVE_LOCATION">c:/Users/njessurun/Desktop/Git/reconfig-computing/lab6/provided_code/dram_test/accelerator_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@7441aa52_ARCHIVE_LOCATION">c:/Users/njessurun/Desktop/Git/reconfig-computing/lab6/provided_code/dram_test/accelerator_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@33785553_ARCHIVE_LOCATION">c:/Users/njessurun/Desktop/Git/reconfig-computing/lab6/provided_code/dram_test/accelerator_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@34451b29_ARCHIVE_LOCATION">c:/Users/njessurun/Desktop/Git/reconfig-computing/lab6/provided_code/dram_test/accelerator_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@711dfa6e_ARCHIVE_LOCATION">c:/Users/njessurun/Desktop/Git/reconfig-computing/lab6/provided_code/dram_test/accelerator_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@50e01992_ARCHIVE_LOCATION">c:/Users/njessurun/Desktop/Git/reconfig-computing/lab6/provided_code/dram_test/accelerator_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@304b6b24_ARCHIVE_LOCATION">c:/Users/njessurun/Desktop/Git/reconfig-computing/lab6/provided_code/dram_test/accelerator_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@37062ef3_ARCHIVE_LOCATION">c:/Users/njessurun/Desktop/Git/reconfig-computing/lab6/provided_code/dram_test/accelerator_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@85a7e48_ARCHIVE_LOCATION">c:/Users/njessurun/Desktop/Git/reconfig-computing/lab6/provided_code/dram_test/accelerator_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@6e0a93b7_ARCHIVE_LOCATION">c:/Users/njessurun/Desktop/Git/reconfig-computing/lab6/provided_code/dram_test/accelerator_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@4fbb6a86_ARCHIVE_LOCATION">c:/Users/njessurun/Desktop/Git/reconfig-computing/lab6/provided_code/dram_test/accelerator_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@2c67b1f3_ARCHIVE_LOCATION">c:/Users/njessurun/Desktop/Git/reconfig-computing/lab6/provided_code/dram_test/accelerator_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@6dd7d816_ARCHIVE_LOCATION">c:/Users/njessurun/Desktop/Git/reconfig-computing/lab6/provided_code/dram_test/accelerator_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@2740926_ARCHIVE_LOCATION">c:/Users/njessurun/Desktop/Git/reconfig-computing/lab6/provided_code/dram_test/accelerator_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@11ad3950_ARCHIVE_LOCATION">c:/Users/njessurun/Desktop/Git/reconfig-computing/lab6/provided_code/dram_test/accelerator_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@177e4b47_ARCHIVE_LOCATION">c:/Users/njessurun/Desktop/Git/reconfig-computing/lab6/provided_code/dram_test/accelerator_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@31d55486_ARCHIVE_LOCATION">c:/Users/njessurun/Desktop/Git/reconfig-computing/lab6/provided_code/dram_test/accelerator_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@3fd1796d_ARCHIVE_LOCATION">c:/Users/njessurun/Desktop/Git/reconfig-computing/lab6/provided_code/dram_test/accelerator_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@75aa079a_ARCHIVE_LOCATION">c:/Users/njessurun/Desktop/Git/reconfig-computing/lab6/provided_code/dram_test/accelerator_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@7b77062f_ARCHIVE_LOCATION">c:/Users/njessurun/Desktop/Git/reconfig-computing/lab6/provided_code/dram_test/accelerator_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@46e3c156_ARCHIVE_LOCATION">c:/Users/njessurun/Desktop/Git/reconfig-computing/lab6/provided_code/dram_test/accelerator_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@46af1000_ARCHIVE_LOCATION">c:/Users/njessurun/Desktop/Git/reconfig-computing/lab6/provided_code/dram_test/accelerator_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@761bbfb7_ARCHIVE_LOCATION">c:/Users/njessurun/Desktop/Git/reconfig-computing/lab6/provided_code/dram_test/accelerator_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@4421cfbe_ARCHIVE_LOCATION">c:/Users/njessurun/Desktop/Git/reconfig-computing/lab6/provided_code/dram_test/accelerator_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@72e19294_ARCHIVE_LOCATION">c:/Users/njessurun/Desktop/Git/reconfig-computing/lab6/provided_code/dram_test/accelerator_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@28c8deea_ARCHIVE_LOCATION">c:/Users/njessurun/Desktop/Git/reconfig-computing/lab6/provided_code/dram_test/accelerator_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@656f5f08_ARCHIVE_LOCATION">c:/Users/njessurun/Desktop/Git/reconfig-computing/lab6/provided_code/dram_test/accelerator_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@150ec32a_ARCHIVE_LOCATION">c:/Users/njessurun/Desktop/Git/reconfig-computing/lab6/provided_code/dram_test/accelerator_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@46129cb3_ARCHIVE_LOCATION">c:/Users/njessurun/Desktop/Git/reconfig-computing/lab6/provided_code/dram_test/accelerator_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@49ad85d7_ARCHIVE_LOCATION">c:/Users/njessurun/Desktop/Git/reconfig-computing/lab6/provided_code/dram_test/accelerator_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@7df24eb4_ARCHIVE_LOCATION">c:/Users/njessurun/Desktop/Git/reconfig-computing/lab6/provided_code/dram_test/accelerator_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@4340ea1a_ARCHIVE_LOCATION">c:/Users/njessurun/Desktop/Git/reconfig-computing/lab6/provided_code/dram_test/accelerator_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@febc954_ARCHIVE_LOCATION">c:/Users/njessurun/Desktop/Git/reconfig-computing/lab6/provided_code/dram_test/accelerator_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@20f91d16_ARCHIVE_LOCATION">c:/Users/njessurun/Desktop/Git/reconfig-computing/lab6/provided_code/dram_test/accelerator_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@15b04b21_ARCHIVE_LOCATION">c:/Users/njessurun/Desktop/Git/reconfig-computing/lab6/provided_code/dram_test/accelerator_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@289f7965_ARCHIVE_LOCATION">c:/Users/njessurun/Desktop/Git/reconfig-computing/lab6/provided_code/dram_test/accelerator_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@63af0f8d_ARCHIVE_LOCATION">c:/Users/njessurun/Desktop/Git/reconfig-computing/lab6/provided_code/dram_test/accelerator_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@57825fb8_ARCHIVE_LOCATION">c:/Users/njessurun/Desktop/Git/reconfig-computing/lab6/provided_code/dram_test/accelerator_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@5fa8426c_ARCHIVE_LOCATION">c:/Users/njessurun/Desktop/Git/reconfig-computing/lab6/provided_code/dram_test/accelerator_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@6851d3e3_ARCHIVE_LOCATION">c:/Users/njessurun/Desktop/Git/reconfig-computing/lab6/provided_code/dram_test/accelerator_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@7555920_ARCHIVE_LOCATION">c:/Users/njessurun/Desktop/Git/reconfig-computing/lab6/provided_code/dram_test/accelerator_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@5d69c785_ARCHIVE_LOCATION">c:/Users/njessurun/Desktop/Git/reconfig-computing/lab6/provided_code/dram_test/accelerator_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@31d368d_ARCHIVE_LOCATION">c:/Users/njessurun/Desktop/Git/reconfig-computing/lab6/provided_code/dram_test/accelerator_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@65c193d2_ARCHIVE_LOCATION">c:/Users/njessurun/Desktop/Git/reconfig-computing/lab6/provided_code/dram_test/accelerator_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@35738345_ARCHIVE_LOCATION">c:/Users/njessurun/Desktop/Git/reconfig-computing/lab6/provided_code/dram_test/accelerator_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@4e18d603_ARCHIVE_LOCATION">c:/Users/njessurun/Desktop/Git/reconfig-computing/lab6/provided_code/dram_test/accelerator_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@44b17da9_ARCHIVE_LOCATION">c:/Users/njessurun/Desktop/Git/reconfig-computing/lab6/provided_code/dram_test/accelerator_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@502a6bc9_ARCHIVE_LOCATION">c:/Users/njessurun/Desktop/Git/reconfig-computing/lab6/provided_code/dram_test/accelerator_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@3e5e2392_ARCHIVE_LOCATION">c:/Users/njessurun/Desktop/Git/reconfig-computing/lab6/provided_code/dram_test/accelerator_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@5a692583_ARCHIVE_LOCATION">c:/Users/njessurun/Desktop/Git/reconfig-computing/lab6/provided_code/dram_test/accelerator_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@24033e11_ARCHIVE_LOCATION">c:/Users/njessurun/Desktop/Git/reconfig-computing/lab6/provided_code/dram_test/accelerator_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@60cbbf37_ARCHIVE_LOCATION">c:/Users/njessurun/Desktop/Git/reconfig-computing/lab6/provided_code/dram_test/accelerator_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@4cb80c92_ARCHIVE_LOCATION">c:/Users/njessurun/Desktop/Git/reconfig-computing/lab6/provided_code/dram_test/accelerator_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@ba12b0f_ARCHIVE_LOCATION">c:/Users/njessurun/Desktop/Git/reconfig-computing/lab6/provided_code/dram_test/accelerator_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@5526cbfe_ARCHIVE_LOCATION">c:/Users/njessurun/Desktop/Git/reconfig-computing/lab6/provided_code/dram_test/accelerator_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@3bd65743_ARCHIVE_LOCATION">c:/Users/njessurun/Desktop/Git/reconfig-computing/lab6/provided_code/dram_test/accelerator_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@5cba4583_ARCHIVE_LOCATION">c:/Users/njessurun/Desktop/Git/reconfig-computing/lab6/provided_code/dram_test/accelerator_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@262b3c24_ARCHIVE_LOCATION">c:/Users/njessurun/Desktop/Git/reconfig-computing/lab6/provided_code/dram_test/accelerator_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@19413fa4_ARCHIVE_LOCATION">c:/Users/njessurun/Desktop/Git/reconfig-computing/lab6/provided_code/dram_test/accelerator_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@102fabc6_ARCHIVE_LOCATION">c:/Users/njessurun/Desktop/Git/reconfig-computing/lab6/provided_code/dram_test/accelerator_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@784e8a39_ARCHIVE_LOCATION">c:/Users/njessurun/Desktop/Git/reconfig-computing/lab6/provided_code/dram_test/accelerator_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@40c553ee_ARCHIVE_LOCATION">c:/Users/njessurun/Desktop/Git/reconfig-computing/lab6/provided_code/dram_test/accelerator_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@3e60665e_ARCHIVE_LOCATION">c:/Users/njessurun/Desktop/Git/reconfig-computing/lab6/provided_code/dram_test/accelerator_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@2279b7b2_ARCHIVE_LOCATION">c:/Users/njessurun/Desktop/Git/reconfig-computing/lab6/provided_code/dram_test/accelerator_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@6d1fda09_ARCHIVE_LOCATION">c:/Users/njessurun/Desktop/Git/reconfig-computing/lab6/provided_code/dram_test/accelerator_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@7eb92ce5_ARCHIVE_LOCATION">c:/Users/njessurun/Desktop/Git/reconfig-computing/lab6/provided_code/dram_test/accelerator_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@1591aed9_ARCHIVE_LOCATION">c:/Users/njessurun/Desktop/Git/reconfig-computing/lab6/provided_code/dram_test/accelerator_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@32dbdc6b_ARCHIVE_LOCATION">c:/Users/njessurun/Desktop/Git/reconfig-computing/lab6/provided_code/dram_test/accelerator_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@566a95bc_ARCHIVE_LOCATION">c:/Users/njessurun/Desktop/Git/reconfig-computing/lab6/provided_code/dram_test/accelerator_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@65a62a32_ARCHIVE_LOCATION">c:/Users/njessurun/Desktop/Git/reconfig-computing/lab6/provided_code/dram_test/accelerator_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@3de2e87c_ARCHIVE_LOCATION">c:/Users/njessurun/Desktop/Git/reconfig-computing/lab6/provided_code/dram_test/accelerator_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@520ce550_ARCHIVE_LOCATION">c:/Users/njessurun/Desktop/Git/reconfig-computing/lab6/provided_code/dram_test/accelerator_1.0</xilinx:tag>
       </xilinx:tags>
     </xilinx:coreExtensions>
     <xilinx:packagingInfo>
-      <xilinx:xilinxVersion>2015.2</xilinx:xilinxVersion>
-      <xilinx:checksum xilinx:scope="busInterfaces" xilinx:value="01246c21"/>
-      <xilinx:checksum xilinx:scope="memoryMaps" xilinx:value="cafe3ba6"/>
-      <xilinx:checksum xilinx:scope="fileGroups" xilinx:value="2ad50ba7"/>
-      <xilinx:checksum xilinx:scope="ports" xilinx:value="7520d658"/>
+      <xilinx:xilinxVersion>2020.1</xilinx:xilinxVersion>
+      <xilinx:checksum xilinx:scope="busInterfaces" xilinx:value="7a6aebf4"/>
+      <xilinx:checksum xilinx:scope="memoryMaps" xilinx:value="ebdd79b6"/>
+      <xilinx:checksum xilinx:scope="fileGroups" xilinx:value="f4e5703a"/>
+      <xilinx:checksum xilinx:scope="ports" xilinx:value="6d40093a"/>
       <xilinx:checksum xilinx:scope="hdlParameters" xilinx:value="72da4266"/>
-      <xilinx:checksum xilinx:scope="parameters" xilinx:value="a92f8a7e"/>
+      <xilinx:checksum xilinx:scope="parameters" xilinx:value="760df5fd"/>
     </xilinx:packagingInfo>
   </spirit:vendorExtensions>
 </spirit:component>

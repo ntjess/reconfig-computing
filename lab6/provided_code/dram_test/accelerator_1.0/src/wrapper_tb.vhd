@@ -71,7 +71,7 @@ begin
             return integer is
 
         begin
-            return i+1;
+            return (i+1);
         end checkOutput;
 
         procedure clearMMAP is
@@ -131,7 +131,7 @@ begin
         for i in 0 to DMA_SIZE-1 loop
             mmap_wr_addr <= std_logic_vector(to_unsigned(i, C_MMAP_ADDR_WIDTH));
             mmap_wr_en   <= '1';
-            mmap_wr_data <= std_logic_vector(to_unsigned(i+1, C_MMAP_DATA_WIDTH));
+            mmap_wr_data <= std_logic_vector(to_unsigned(checkOutput(i), C_MMAP_DATA_WIDTH));
 
             for j in 0 to C_MMAP_CYCLES-1 loop
                 wait until rising_edge(clk0);

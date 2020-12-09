@@ -41,7 +41,6 @@ architecture RTL of dram_rd_ram0_custom is
         rd_en : in std_logic;
         dout : out std_logic_vector(15 downto 0);
         full : out std_logic;
-        almost_full : out std_logic;
         empty : out std_logic;
         prog_full : out std_logic;
         wr_rst_busy : out std_logic;
@@ -49,15 +48,20 @@ architecture RTL of dram_rd_ram0_custom is
       );
   end component;
 
-  signal size_reg_uclk, size_reg_dclk : std_logic_vector(size'range);
-  signal start_addr_reg_uclk, start_addr_reg_dclk : std_logic_vector(start_addr'range);
+  signal size_reg : std_logic_vector(size'range);
+  signal start_addr_reg : std_logic_vector(start_addr'range);
   
   signal go_addr_gen : std_logic;
   signal en_addr_gen : std_logic;
+  signal dram_rd_en_s     : std_logic;
   
   signal fifo_empty : std_logic;
   signal fifo_prog_full : std_logic;
+  signal fifo_empty_history, block_first_rd : std_logic;
   signal fifo_din : std_logic_vector(dram_rd_data'range);
+  
+  -- Just to make sure the code is recompiling
+  constant CODE_VER : integer := 9;
   
   signal valid_s:  std_logic;
   
@@ -79,8 +83,22 @@ begin
       ack       => open
     );
         
-    -- Swap input halves so fifo slices are correctly ordered    
-    fifo_din <= dram_rd_data((dram_rd_data'length/2)-1 downto 0) & dram_rd_data(dram_rd_data'length-1 downto (dram_rd_data'length/2));
+    U_FIFO_EMPTY_HISTORY : entity work.reg
+    generic map(
+      width => 1,
+      init  => '0'
+    )
+    port map(
+      clk    => user_clk,
+      rst    => rst,
+      en     => '1',
+      input(0)  => fifo_empty,
+      output(0) => fifo_empty_history
+    );
+    block_first_rd <= (not fifo_empty) and fifo_empty_history;
+    
+    
+    fifo_din <= dram_rd_data(dram_rd_data'length/2-1 downto 0) & dram_rd_data(dram_rd_data'length-1 downto dram_rd_data'length/2);
     U_FIFO : fifo_32_custom
       port map(
         rst         => rst,
@@ -88,33 +106,19 @@ begin
         rd_clk      => user_clk,
         din         => fifo_din,
         wr_en       => dram_rd_valid,
-        rd_en       => rd_en,
+        rd_en       => rd_en or block_first_rd,
         dout        => data,
         full        => open,
-        almost_full => open,
         empty       => fifo_empty,
         prog_full   => fifo_prog_full,
         wr_rst_busy => open,
         rd_rst_busy => open
       );
-      valid_s <= not fifo_empty;
-      
+          
   -- DRAM Clock
   
-  U_SIZE_DELAY_REG_DCLK : entity work.reg
-    generic map(
-      width => size'length,
-      init  => '0'
-    )
-    port map(
-      clk    => dram_clk,
-      rst    => rst,
-      en     => '1',
-      input  => size_reg_uclk,
-      output => size_reg_dclk
-    );
+  en_addr_gen <= dram_ready and (not fifo_prog_full);
   
-  en_addr_gen <= dram_ready and (not fifo_prog_full) and (not done_s);
   U_ADDR_GEN : entity work.addr_gen
     generic map(
       width => C_RAM0_ADDR_WIDTH
@@ -122,16 +126,17 @@ begin
     port map(
       clk => dram_clk,
       rst => rst,
-      size => size_reg_dclk(C_RAM0_ADDR_WIDTH downto 0),
-      start_addr => start_addr_reg_dclk,
+      size => size_reg(C_RAM0_ADDR_WIDTH downto 0),
+      start_addr => start_addr_reg,
       go => go_addr_gen,
       en => en_addr_gen,
-      rd_en => dram_rd_en,
+      rd_en => dram_rd_en_s,
       rd_addr => dram_rd_addr
     );
+    dram_rd_en <= dram_rd_en_s;
     
   -- User clock
-  U_SIZE_DELAY_REG_UCLK : entity work.reg
+  U_SIZE_DELAY_REG : entity work.reg
     generic map(
       width => size'length,
       init  => '0'
@@ -141,7 +146,7 @@ begin
       rst    => rst,
       en     => '1',
       input  => size,
-      output => size_reg_uclk
+      output => size_reg
     );
     
   U_START_ADDR_DELAY_REG : entity work.reg
@@ -154,7 +159,7 @@ begin
       rst    => rst,
       en     => '1',
       input  => start_addr,
-      output => start_addr_reg_uclk
+      output => start_addr_reg
     );
   
   U_COUNTER : entity work.counter
@@ -169,7 +174,8 @@ begin
       output => count_val
     );
 
-  done_s <= '1' when (fifo_empty = '1') and (to_integer(unsigned(count_val)) = to_integer(unsigned(size_reg_dclk))) else '0';
+  done_s <= '1' when (to_integer(unsigned(count_val)) > to_integer(unsigned(size_reg))) else '0';
+  valid_s <= (not fifo_empty) and (not block_first_rd);
   done <= done_s;
   valid <= valid_s;
 

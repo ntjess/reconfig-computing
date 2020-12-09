@@ -27,13 +27,13 @@ entity counter is
     -- integer(ceil(log2(real(max_value+1))))
     --
     -- with a clog2 function that we added to counter_pkg.
-    output : out std_logic_vector(clog2(max_value + 1) - 1 downto 0));
+    output : out std_logic_vector(bitsNeeded(max_value) - 1 downto 0));
 end counter;
 
 architecture BHV_UNSIGNED of counter is
 
   -- we can also use the clog2 function here
-  constant NUM_BITS : positive := clog2(max_value + 1);
+  constant NUM_BITS : positive := bitsNeeded(max_value);
 
   signal count : unsigned(NUM_BITS - 1 downto 0);
 
@@ -47,7 +47,7 @@ begin
       if (en = '1') then
         if (up = '1') then
           if (count = max_value) then
-            count <= to_unsigned(0, NUM_BITS);
+            count <= to_unsigned(max_value, NUM_BITS);
           else
             count <= count + 1;
           end if;
