@@ -61,7 +61,7 @@ architecture RTL of dram_rd_ram0_custom is
   signal fifo_din : std_logic_vector(dram_rd_data'range);
   
   -- Just to make sure the code is recompiling
-  constant CODE_VER : integer := 9;
+  constant CODE_VER : integer := 11;
   
   signal valid_s:  std_logic;
   
@@ -82,7 +82,8 @@ begin
       rcv       => go_addr_gen,
       ack       => open
     );
-        
+    
+    
     U_FIFO_EMPTY_HISTORY : entity work.reg
     generic map(
       width => 1,
@@ -167,14 +168,14 @@ begin
       max_value => max_count_val
     )
     port map(
-      clk    => user_clk,
+      clk    => dram_rd_en_s,
       rst    => rst,
       up     => '1',
-      en     => rd_en,
+      en     => '1',
       output => count_val
     );
 
-  done_s <= '1' when (to_integer(unsigned(count_val)) > to_integer(unsigned(size_reg))) else '0';
+  done_s <= '1' when (to_integer(unsigned(count_val)) = to_integer(unsigned(size_reg))) else '0';
   valid_s <= (not fifo_empty) and (not block_first_rd);
   done <= done_s;
   valid <= valid_s;
