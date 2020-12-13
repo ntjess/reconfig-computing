@@ -97,7 +97,7 @@ architecture default of user_app_conv is
 
 begin
 
-    U_MMAP : entity work.memory_map
+    U_MMAP : entity work.memory_map_conv
         port map (
             clk     => clks(C_CLK_USER),
             rst     => rst,

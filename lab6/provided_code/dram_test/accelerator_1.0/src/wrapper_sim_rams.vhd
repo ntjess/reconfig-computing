@@ -186,7 +186,7 @@ begin
     ----------------------------------------------------------------------
     -- Instantiate the main user application
 
-    U_USER_APP : entity work.user_app
+    U_USER_APP : entity work.user_app_conv
         port map (
             clks   => clks,
             rst    => rst,

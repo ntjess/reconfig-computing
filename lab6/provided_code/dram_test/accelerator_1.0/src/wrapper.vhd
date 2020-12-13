@@ -89,7 +89,7 @@ architecture default of wrapper is
 
     signal sw_rst, rst_s : std_logic;
 
-    component dram_rd_ram0_custom
+    component dram_rd_ram0
         port(dram_clk   : in  std_logic;
              user_clk   : in  std_logic;
              rst        : in  std_logic;
@@ -186,7 +186,7 @@ begin
     ----------------------------------------------------------------------
     -- Instantiate the main user application
 
-    U_USER_APP : entity work.user_app
+    U_USER_APP : entity work.user_app_conv
         port map (
             clks   => clks,
             rst    => rst,
@@ -239,7 +239,7 @@ begin
     ----------------------------------------------------------------------
     -- Instantiate DMA controllers
 
-    U_DRAM0_RD : dram_rd_ram0_custom
+    U_DRAM0_RD : dram_rd_ram0
         port map (
             -- user dma control signals
             dram_clk   => clks(C_CLK_DRAM),
